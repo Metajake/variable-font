@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face{
+        font-family: 'Source Serif Variable';
+        font-weight: 200 900;
+        font-style: normal;
+        font-stretch: normal;
+        src: url('VAR/SourceSerifVariable-Roman.ttf.woff2') format('woff2-variations'),
+             url('VAR/SourceSerifVariable-Roman.ttf.woff') format('woff-variations'),
+             url('VAR/SourceSerifVariable-Roman.ttf') format('truetype-variations');
+    }
+
+    @font-face{
+        font-family: 'Source Serif Variable';
+        font-weight: 200 900;
+        font-style: italic;
+        font-stretch: normal;
+        src: url('VAR/SourceSerifVariable-Italic.ttf.woff2') format('woff2-variations'),
+             url('VAR/SourceSerifVariable-Italic.ttf.woff') format('woff-variations'),
+             url('VAR/SourceSerifVariable-Italic.ttf') format('truetype-variations');
+    }
+    p {
+      font-family:'Source Serif Variable', 'serif';
+      font-weight:350;
+    }
+    /* p:hover{
+      color:red;
+      font-weight:900;
+    } */
+    #myRange{
+      width:50%;
+    }
+  </style>
+</head>
+<body>
+  <p id="helloParagraph">Adobe Source Sans Serif</p>
+  <input type="range" min="200" max="900" value="350" class="slider" id="myRange">
+  <script>
+    para = document.querySelector('#helloParagraph')
+    slider = document.querySelector('#myRange')
+    slider.oninput = function(){
+      // console.log(this.value)
+      para.style.fontWeight = this.value;
+    }
+  </script>
+</body>
+</html>
