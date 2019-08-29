@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face{
+        font-family: 'Source Serif Variable';
+        font-weight: 200 900;
+        font-style: normal;
+        font-stretch: normal;
+        src: url('VAR/SourceSerifVariable-Roman.ttf.woff2') format('woff2-variations'),
+             url('VAR/SourceSerifVariable-Roman.ttf.woff') format('woff-variations'),
+             url('VAR/SourceSerifVariable-Roman.ttf') format('truetype-variations');
+    }
+
+    @font-face{
+        font-family: 'Source Serif Variable';
+        font-weight: 200 900;
+        font-style: italic;
+        font-stretch: normal;
+        src: url('VAR/SourceSerifVariable-Italic.ttf.woff2') format('woff2-variations'),
+             url('VAR/SourceSerifVariable-Italic.ttf.woff') format('woff-variations'),
+             url('VAR/SourceSerifVariable-Italic.ttf') format('truetype-variations');
+    }
+    @font-face{
+      font-family: 'Aretha Variable';
+      font-weight: 100 900;
+      font-style: normal;
+      font-stretch: normal;
+      src: url('VAR/ArethaGX.ttf') format('truetype-variations');
+    }
+    p {
+      font-family:'Aretha Variable', 'serif';
+      font-size: 5rem;
+      --wght:500;
+      --ital:75;
+      font-variation-settings: "wght" var(--wght), "ital" var(--ital) ;
+      /* font-variation-settings: "wght" 459, "ital" 25 ; */
+    }
+    #myRange, #myItalic{
+      width:50%;
+    }
+  </style>
+</head>
+<body>
+  <p id="helloParagraph">ARETHA</p>
+  <input type="range" min="100" max="900" value="350" class="slider" id="myRange">
+  <input type="range" min="0" max="100" value="75" class="slider" id="myItalic">
+
+  <script>
+    slider = document.querySelector('#myRange')
+    italSlider = document.querySelector('#myItalic')
+
+    slider.oninput = function(){
+      console.log("Yod")
+      document.documentElement.querySelector('#helloParagraph').style.setProperty('--wght', this.value);
+    }
+
+    italSlider.oninput = function(){
+      document.documentElement.querySelector('#helloParagraph').style.setProperty('--ital', this.value);
+    }
+  </script>
+</body>
+</html>

@@ -1,64 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <style>
-    @font-face{
-        font-family: 'Source Serif Variable';
-        font-weight: 200 900;
-        font-style: normal;
-        font-stretch: normal;
-        src: url('VAR/SourceSerifVariable-Roman.ttf.woff2') format('woff2-variations'),
-             url('VAR/SourceSerifVariable-Roman.ttf.woff') format('woff-variations'),
-             url('VAR/SourceSerifVariable-Roman.ttf') format('truetype-variations');
-    }
-
-    @font-face{
-        font-family: 'Source Serif Variable';
-        font-weight: 200 900;
-        font-style: italic;
-        font-stretch: normal;
-        src: url('VAR/SourceSerifVariable-Italic.ttf.woff2') format('woff2-variations'),
-             url('VAR/SourceSerifVariable-Italic.ttf.woff') format('woff-variations'),
-             url('VAR/SourceSerifVariable-Italic.ttf') format('truetype-variations');
-    }
-    @font-face{
-      font-family: 'Aretha Variable';
-      font-weight: 100 900;
-      font-style: normal;
-      font-stretch: normal;
-      src: url('VAR/ArethaGX.ttf') format('truetype-variations');
-    }
-    p {
-      font-family:'Aretha Variable', 'serif';
-      font-size: 5rem;
-      --wght:500;
-      --ital:75;
-      font-variation-settings: "wght" var(--wght), "ital" var(--ital) ;
-      /* font-variation-settings: "wght" 459, "ital" 25 ; */
-    }
-    #myRange, #myItalic{
-      width:50%;
-    }
-  </style>
-</head>
-<body>
-  <p id="helloParagraph">ARETHA</p>
-  <input type="range" min="100" max="900" value="350" class="slider" id="myRange">
-  <input type="range" min="0" max="100" value="75" class="slider" id="myItalic">
-
-  <script>
-    slider = document.querySelector('#myRange')
-    italSlider = document.querySelector('#myItalic')
-
-    slider.oninput = function(){
-      console.log("Yod")
-      document.documentElement.querySelector('#helloParagraph').style.setProperty('--wght', this.value);
-    }
-
-    italSlider.oninput = function(){
-      document.documentElement.querySelector('#helloParagraph').style.setProperty('--ital', this.value);
-    }
-  </script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Uncle Mike Variable Font Module</title>
+    <link rel="shortcut icon" type="image/png" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="static/css/bulma.css">
+    <link rel="stylesheet" href="static/css/base.css">
+  </head>
+  <body>
+    <div class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <form>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Option 1</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control is-expanded">
+                      <div class="select is-fullwidth">
+                        <select>
+                          <option value="a">A</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field-label is-normal">
+                  <label class="label">Variable 1</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <input class="input slider" type="range" min="100" max="900" value="350" id="myRange">
+                    </div>
+                  </div>
+                </div>
+                <div class="field-label is-normal">
+                  <label class="label">Option 2</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-grouped">
+                    <div class="control"><a>A</a></div>
+                    <div class="control"><a>B</a></div>
+                    <div class="control"><a>C</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Text Area</label>
+                <div class="control">
+                  <textarea class="textarea"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
