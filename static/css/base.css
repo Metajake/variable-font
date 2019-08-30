@@ -1,1 +1,1 @@
-body{background-color:#639}
+@font-face{font-family:'Aretha Variable';font-weight:100 900;font-style:normal;font-stretch:normal;src:url("../VAR/ArethaGX.ttf") format('truetype-variations')}body{font-family:"sans-serif"}#text-area{height:100%;outline:1px solid #808080;background-color:transparent}
