@@ -20,7 +20,6 @@ highlightColor = #F6A920
 
 body
   font-family:"sans-serif"
-  font-weight:700
 
 a
   color: highlightColor
@@ -29,6 +28,9 @@ a
 
 form *
   font-family:"Animal-reg"
+
+.label
+  font-weight:400
 
 .switch
   position: relative
@@ -39,6 +41,14 @@ form *
     opacity: 0
     width: 0
     height: 0
+    &:checked + .toggle
+      background-color: highlightColor
+    &:checked + .toggle:before
+      -webkit-transform: translateX(26px)
+      -ms-transform: translateX(26px)
+      transform: translateX(26px)
+    &:focus + .toggle
+      box-shadow: 0 0 1px highlightColor
 
 .toggle
   position: absolute
@@ -60,17 +70,6 @@ form *
     background-color: white
     -webkit-transition: .4s
     transition: .4s
-
-input:checked + .toggle
-  background-color: highlightColor
-
-input:checked + .toggle:before
-  -webkit-transform: translateX(26px)
-  -ms-transform: translateX(26px)
-  transform: translateX(26px)
-
-input:focus + .toggle
-  box-shadow: 0 0 1px highlightColor
 
 .toggle.round
   border-radius: 34px
