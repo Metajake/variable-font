@@ -1,3 +1,5 @@
+highlightColor = #F6A920
+
 @font-face{
   font-family: 'Aretha Variable';
   font-weight: 100 900;
@@ -6,14 +8,78 @@
   src: url('../VAR/ArethaGX.ttf') format('truetype-variations');
 }
 
+@font-face{
+  font-family: 'Animal-reg';
+  src: url('../fonts/UM_Animal-Regular.otf');
+}
+
+@font-face{
+  font-family: 'Animal-demi';
+  src: url('../fonts/UM_Animal-DemiBold.otf');
+}
+
 body
   font-family:"sans-serif"
+  font-weight:700
 
-// #form-content
-//   min-height:100%
+a
+  color: highlightColor
+  &:visited
+    color: highlightColor
+
+form *
+  font-family:"Animal-reg"
+
+.switch
+  position: relative
+  display: inline-block
+  width: 60px
+  height: 34px
+  input
+    opacity: 0
+    width: 0
+    height: 0
+
+.toggle
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #ccc
+  -webkit-transition: .4s
+  transition: .4s
+  &:before
+    position: absolute
+    content: ""
+    height: 26px
+    width: 26px
+    left: 4px
+    bottom: 4px
+    background-color: white
+    -webkit-transition: .4s
+    transition: .4s
+
+input:checked + .toggle
+  background-color: highlightColor
+
+input:checked + .toggle:before
+  -webkit-transform: translateX(26px)
+  -ms-transform: translateX(26px)
+  transform: translateX(26px)
+
+input:focus + .toggle
+  box-shadow: 0 0 1px highlightColor
+
+.toggle.round
+  border-radius: 34px
+  &:before
+    border-radius: 50%
 
 #text-area
-  height:100%
-  outline:1px solid gray
   background-color:transparent
-  // height:100%
+  width:90%
+
+.has-pad-right-tablet
+  padding-right:.75rem

@@ -18,22 +18,21 @@ html(lang="en")
             .column
               form
                 .field.is-horizontal
-                  .field-label.is-normal
-                    label.label Option 1
-                  .field-body
+                  .field-body.has-pad-right-tablet
                     .field
                       .control.is-expanded
                         .select.is-fullwidth
-                          select
-                            option(value="a") A
+                          select.is-fullwidth
+                            option(value="regular") Regular
+                            option(value="demibold") Demi Bold
                   .field-label.is-normal
-                    label.label Variable 1
-                  .field-body
+                    label.label Variable&nbsp;1
+                  .field-body.has-pad-right-tablet
                     .field
                       .control
                         input.input(type="range" min="100" max="900" value="350" class="slider" id="myRange")
                   .field-label.is-normal
-                    label.label Option 2
+                    label.label Option&nbsp;2
                   .field-body
                     .field.is-grouped
                       .control
@@ -42,8 +41,14 @@ html(lang="en")
                         a B
                       .control
                         a C
+                  .field-label.is-normal
+                    label.label Variable
+                  .field-body
+                    .field
+                      label.switch
+                        input(type="checkbox")
+                        span.toggle.round
                 .field
-                  .control
-                    #text-area(contenteditable)
-                      p Hello
+                  #text-area(contenteditable)
+                    p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
     script(src="static/js/base_ui.js")

@@ -17,24 +17,22 @@
             <div class="column">
               <form>
                 <div class="field is-horizontal">
-                  <div class="field-label is-normal">
-                    <label class="label">Option 1</label>
-                  </div>
-                  <div class="field-body">
+                  <div class="field-body has-pad-right-tablet">
                     <div class="field">
                       <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                          <select>
-                            <option value="a">A</option>
+                          <select class="is-fullwidth">
+                            <option value="regular">Regular</option>
+                            <option value="demibold">Demi Bold</option>
                           </select>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="field-label is-normal">
-                    <label class="label">Variable 1</label>
+                    <label class="label">Variable&nbsp;1</label>
                   </div>
-                  <div class="field-body">
+                  <div class="field-body has-pad-right-tablet">
                     <div class="field">
                       <div class="control">
                         <input class="input slider" type="range" min="100" max="900" value="350" id="myRange">
@@ -42,7 +40,7 @@
                     </div>
                   </div>
                   <div class="field-label is-normal">
-                    <label class="label">Option 2</label>
+                    <label class="label">Option&nbsp;2</label>
                   </div>
                   <div class="field-body">
                     <div class="field is-grouped">
@@ -51,12 +49,20 @@
                       <div class="control"><a>C</a></div>
                     </div>
                   </div>
+                  <div class="field-label is-normal">
+                    <label class="label">Variable</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field">
+                      <label class="switch">
+                        <input type="checkbox"><span class="toggle round"></span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 <div class="field">
-                  <div class="control">
-                    <div id="text-area" contenteditable>
-                      <p>Hello</p>
-                    </div>
+                  <div id="text-area" contenteditable>
+                    <p>The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...</p>
                   </div>
                 </div>
               </form>
