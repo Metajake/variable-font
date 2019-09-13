@@ -30,17 +30,17 @@ html(lang="en")
                   .field-body
                     .field.is-flex.has-align-center
                       .control.is-width-60.is-flex.has-align-center
-                        input#myRange.input.slider.is-paddingless(type="range" min="100" max="900" value="350")
+                        input#range-size.input.slider.is-paddingless(type="range" min="10" max="50")
                   .field-label.is-flex.has-align-center.has-justified-right
                     label.label Stylistic&nbsp;Sets
                   .field-body
                     .field.is-grouped
                       .control.is-flex.has-align-center
-                        a A
+                        a.is-disabled A
                       .control.is-flex.has-align-center
-                        a B
+                        a.is-disabled B
                       .control.is-flex.has-align-center
-                        a C
+                        a.is-disabled C
                   .field-label.is-flex.has-align-center
                     label.label Variable
                   .field-body.has-flex-grow-unset
@@ -48,6 +48,9 @@ html(lang="en")
                       label.switch
                         input(type="checkbox")
                         span.toggle.round
+                .columns.is-multiline
+                  .column.is-full
+                  .column.is-full
                 .field
                   #text-area(contenteditable)
                     p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...

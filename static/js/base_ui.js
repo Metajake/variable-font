@@ -13,10 +13,15 @@ var body = document.body,
     formContainer = document.querySelector("#form-container");
 
 window.addEventListener("load", function(e){
+  rangeSize = document.querySelector('#range-size');
+  editableText = document.querySelector('#text-area p');
+
   pageWrapper.style.height = docHeight+'px';
   formContainer.style.height = docHeight+'px';
 
-  textArea.value = "Hello"
-  textArea.style.fontFamily = 'Aretha Variable';
-  textArea.style.fontSize = "3rem";
+  rangeSize.value= 30;
+
+  rangeSize.oninput = function(){
+    editableText.style.fontSize = (this.value * 0.1) +"rem";
+  }
 })
