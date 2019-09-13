@@ -30,6 +30,20 @@ a
 form *
   font-family:"Animal-reg"
 
+input[type="range"]
+  height:1px
+
+noBorder()
+  box-shadow:none
+  border-color:#dbdbdb
+  outline:none
+
+.input
+  &:active
+    noBorder()
+  &:focus
+    noBorder()
+
 .label
   font-weight:400
 
