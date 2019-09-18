@@ -12,8 +12,9 @@ html(lang="en")
     
   body
     #wrapper
-      .section
-        .container#form-container
+      #fixed-controls
+        .section#font-controls.is-bottom-paddingless
+        .container
           .columns
             .column
               form
@@ -51,7 +52,10 @@ html(lang="en")
                 .columns.is-multiline
                   .column.is-full
                   .column.is-full
-                .field
-                  #text-area(contenteditable)
-                    p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
+      .section#font-display.is-top-paddingless.is-bottom-paddingless
+        .container
+          .columns
+            .column.is-bottom-paddingless
+              #text-area(contenteditable)
+                p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
     script(src="static/js/base_ui.js")
