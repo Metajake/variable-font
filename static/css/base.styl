@@ -98,6 +98,23 @@ noBorder()
   &:before
     border-radius: 50%
 
+#fixed-controls
+  position:fixed
+  width:100%
+  top:0
+  z-index:1
+  background-color:white
+
+
+#font-display
+  margin-top:288px
+@media screen and (min-width:769px)
+  #font-display
+    margin-top:132px
+// @media screen and (min-width:1024px)
+//   #font-display
+//     margin-top:132px
+
 #text-area
   background-color:transparent
   p
@@ -122,3 +139,9 @@ noBorder()
 
 .has-flex-grow-unset
   flex-grow: unset !important
+
+.is-bottom-paddingless
+  padding-bottom:0 !important
+
+.is-top-paddingless
+  padding-top:0 !important

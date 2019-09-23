@@ -10,25 +10,21 @@ var body = document.body,
     ),
     pageWrapper = document.querySelector("#wrapper"),
     textArea = document.querySelector("#text-area"),
-    formContainer = document.querySelector("#form-container");
+    fontControls = document.querySelector(".section#font-controls"),
+    rangeSliderSize = document.querySelector('#range-size'),
+    editableText = document.querySelector('#text-area p'),
+    selectFontStyle = document.querySelector('#select-style');
 
 window.addEventListener("load", function(e){
-  rangeSize = document.querySelector('#range-size');
-  selectStyle = document.querySelector('#select-style');
-  editableText = document.querySelector('#text-area p');
-
   pageWrapper.style.height = docHeight+'px';
-  formContainer.style.height = docHeight+'px';
+  textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
 
-  rangeSize.value= 30;
-  selectStyle.value = 'Animal-reg'
-  editableText.style.fontFamily = selectStyle.value;
-
-  rangeSize.oninput = function(){
+  rangeSliderSize.value= 30;
+  rangeSliderSize.oninput = function(){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
-  
-  selectStyle.onchange = function(){
+
+  selectFontStyle.onchange = function(){
     editableText.style.fontFamily = this.value;
   }
 })
