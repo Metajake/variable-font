@@ -8,7 +8,6 @@ var body = document.body,
       html.scrollHeight,
       html.offsetHeight
     ),
-    pageWrapper = document.querySelector("#wrapper"),
     textArea = document.querySelector("#text-area"),
     fontControls = document.querySelector(".section#font-controls"),
     rangeSliderSize = document.querySelector('#range-size'),
@@ -16,7 +15,6 @@ var body = document.body,
     selectFontStyle = document.querySelector('#select-style');
 
 window.addEventListener("load", function(e){
-  pageWrapper.style.height = docHeight+'px';
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
 
   rangeSliderSize.value= 30;
