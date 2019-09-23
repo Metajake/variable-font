@@ -4,7 +4,8 @@ const fs = require('fs');
 const md5 = require('md5');
 const pug = require('pug');
 const connect = require('connect')
-var serveStatic = require('serve-static');
+const serveStatic = require('serve-static');
+const stylus = require('stylus');
 
 const hostname = '127.0.0.1';
 const port = 8000;
@@ -13,6 +14,7 @@ const writeFile = 'index.html';
 
 let md5Previous = null;
 let fsWait = false;
+
 fs.watch(watchFile, (event, filename) => {
   if (filename) {
     if (fsWait) return;
@@ -36,19 +38,11 @@ fs.watch(watchFile, (event, filename) => {
   }
 });
 
-var serve = serveStatic(__dirname, { 'index': ['index.html', 'index.htm'] })
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  // res.setHeader('Content-Type', 'text/plain');
-  // res.end('Hello World\n');
-  // serve(req, res, finalhandler(req, res))
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-  console.log(`Watching for file changes on ${watchFile}`);
-});
+var serve = serveStatic(__dirname, {
+  'index': ['index.html', 'index.htm']
+})
 
 connect().use(serveStatic(__dirname)).listen(8000, function(){
     console.log('Server running on 8000...');
+    // console.log(`Watching for file changes on ${watchFile}`);
 });
