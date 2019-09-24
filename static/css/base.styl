@@ -98,6 +98,11 @@ noBorder()
   &:before
     border-radius: 50%
 
+#font-selection
+  ul
+    li
+      display:inline
+
 #fixed-controls
   position:fixed
   width:100%
@@ -109,10 +114,8 @@ noBorder()
   margin-top:288px
 @media screen and (min-width:769px)
   #font-display
-    margin-top:132px
-// @media screen and (min-width:1024px)
-//   #font-display
-//     margin-top:132px
+    // margin-top:132px
+    margin-top:152px
 
 #text-area
   background-color:transparent
@@ -125,10 +128,22 @@ noBorder()
     /* font-variation-settings: "wght" 459, "ital" 25 ; */
 
 .has-pad-right-tablet
-  padding-right:1.5rem
+  padding-right:0
+@media screen and (min-width:769px)
+  .has-pad-right-tablet
+    padding-right:1.5rem
 
-.is-width-60
-  width:60%
+.is-width-60-desktop
+  width:100%
+@media screen and (min-width:1024px)
+  .is-width-60-desktop
+    width:60%
+
+.is-width-80-tablet
+  width:100%
+@media screen and (min-width:769px)
+  .is-width-80-tablet
+    width:80%
 
 .has-align-center
   align-items:center

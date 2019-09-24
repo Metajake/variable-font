@@ -12,7 +12,12 @@ var body = document.body,
     fontControls = document.querySelector(".section#font-controls"),
     rangeSliderSize = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
-    selectFontStyle = document.querySelector('#select-style');
+    selectFontStyle = document.querySelector('#select-style'),
+    fonts = document.querySelectorAll('#font-selection ul li');
+
+function click(){
+  console.log("click")
+}
 
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
@@ -25,4 +30,6 @@ window.addEventListener("load", function(e){
   selectFontStyle.onchange = function(){
     editableText.style.fontFamily = this.value;
   }
+
+  Array.from(fonts).forEach(button=>button.click())
 })
