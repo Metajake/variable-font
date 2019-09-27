@@ -11,53 +11,44 @@ html(lang="en")
     link(rel="stylesheet" href="static/css/base.css")
     
   body
-    #fixed-controls
-      .section#font-controls.is-bottom-paddingless
-        .container
-          .columns
-            .column
-              #font-selection
-                ul
-                  li: a(href="#") Animal
-              form
-                .field.is-horizontal
-                  .field-body.has-pad-right-tablet
-                    .field
-                      .control.is-expanded
-                        .select.is-fullwidth
-                          select#select-style.select-field
-                            option(value="Animal-reg") Regular
-                            option(value="Animal-demi") Demi Bold
-                  .field-label.is-flex.has-align-center.has-justified-right
-                    label.label.is-hidden-touch Size
-                  .columns.is-hidden-tablet
-                    .column
-                  .field-body
-                    .field.is-flex.has-align-center
-                      .control.is-width-60-desktop.is-width-80-tablet.is-flex.has-align-center
-                        input#range-size.input.slider.is-paddingless(type="range" min="10" max="50")
-                  .columns.is-hidden-tablet
-                    .column
-                  .field-label.is-flex.has-align-center.has-justified-right
-                    label.label Stylistic&nbsp;Sets
-                  .field-body
-                    .field.is-grouped
-                      .control.is-flex.has-align-center
-                        a.is-disabled A
-                      .control.is-flex.has-align-center
-                        a.is-disabled B
-                      .control.is-flex.has-align-center
-                        a.is-disabled C
-                  .field-label.is-flex.has-align-center
-                    label.label Variable
-                  .field-body.has-flex-grow-unset
-                    .field
-                      label.switch
-                        input(type="checkbox")
-                        span.toggle.round
-                .columns.is-multiline
-                  .column.is-full
-                  .column.is-full
+    .section#font-controls.is-fixed-top.is-bottom-paddingless
+      .container
+        .columns.is-multiline
+          .column.is-one-fourth-desktop
+            form
+              .select
+                select#select-style.select-field
+                  option(value="Animal-reg") Regular
+                  option(value="Animal-demi") Demi Bold
+          .column.is-one-fourth-desktop
+            form  
+              label.label.is-hidden-touch Size
+              input#range-size.input.slider.is-paddingless(type="range" min="10" max="50")
+          .column.is-half-desktop
+            .columns.is-multiline
+              .column.is-half-mobile.is-one-fourth-desktop
+                form
+                  label.label Stylistic&nbsp;Sets
+                  .field.is-grouped.is-flex
+                    .control.is-flex.has-align-center
+                      a.is-disabled A
+                    .control.is-flex.has-align-center
+                      a.is-disabled B
+                    .control.is-flex.has-align-center
+                      a.is-disabled C
+              .column.is-half-mobile.is-one-fourth-desktop
+                form
+                  label.switch
+                    input(type="checkbox")
+                    span.toggle.round
+              //-   .field-label.is-flex.has-align-center
+              //-     label.label Variable
+              //-   .field-body.has-flex-grow-unset
+              //-     .field
+              //-       
+              //- .columns.is-multiline
+              //-   .column.is-full
+              //-   .column.is-full
     #font-display.section.is-top-paddingless.is-bottom-paddingless
       .container
         .columns
