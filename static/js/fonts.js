@@ -1,5 +1,5 @@
-var fonts = {
-  variableOne: {
+var fontData = {
+  staticVariable: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
@@ -23,15 +23,19 @@ var fonts = {
       variableProperties:['width','italic','size']
     }
   },
-  staticOne: {
+  static: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
-        one:{
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
           hasSubStyles: true,
           subStyles: ['one','two']
         },
-        two:{
+        1:{
+          styleName: 'Demi Bold',
+          styleValue: 'Animal-demi',
           hasSubStyles: false,
           subStyles: []
         }
@@ -45,6 +49,20 @@ var fonts = {
     variable: {
       hasVariable: false,
       variableProperties:[]
+    }
+  },
+  variable: {
+    staticStyles: {
+      hasStaticStyles: false,
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: true,
+      sets: ['one','two','three']
+    },
+    variable: {
+      hasVariable: true,
+      variableProperties:['weight','italic']
     }
   },
   UMAnimal: {

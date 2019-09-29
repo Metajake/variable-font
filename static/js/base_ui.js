@@ -12,11 +12,41 @@ var body = document.body,
     fontControls = document.querySelector(".section#font-controls"),
     rangeSliderSize = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
-    selectFontStyle = document.querySelector('#select-style'),
-    fonts = document.querySelectorAll('#font-selection ul li');
+    fontChoices = document.querySelectorAll('#font-selection ul li')
+    selectedFont = fontChoices[1],
+    selectedFontData = {}
+    fontType = document.querySelector('#font-type');
 
-function click(){
-  console.log("click")
+function capitalize(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function setSelectedFontData(fontName){
+  return fontData[fontName.innerHTML]
+}
+
+function createElementWithAttributes(elementType, idName, classNames){
+  element = document.createElement(elementType)
+  if(idName){element.setAttribute('id', idName)}
+  for(name in classNames){
+    element.classList.add(classNames[name]);
+  }
+  return element;
+}
+
+function buildStaticSelectForm(options){
+  form = document.createElement("form")
+  form.append(createElementWithAttributes('div', '', ['field']))
+  form.childNodes[0].append(createElementWithAttributes('div', '', ['control','is-extended']))
+  form.childNodes[0].childNodes[0].append(createElementWithAttributes('div', '', ['select', 'is-fullwidth-mobile']))
+  form.childNodes[0].childNodes[0].childNodes[0].append(createElementWithAttributes('select', 'select-style', ['select-field']))
+  for (style in selectedFontData['staticStyles']['styles']){
+    option = document.createElement('option');
+    option.setAttribute('value', selectedFontData['staticStyles']['styles'][style]['styleValue'])
+    option.innerHTML = capitalize(selectedFontData['staticStyles']['styles'][style]['styleName'])
+    form.childNodes[0].childNodes[0].childNodes[0].childNodes[0].append(option)
+  }
+  return form;
 }
 
 window.addEventListener("load", function(e){
@@ -27,9 +57,14 @@ window.addEventListener("load", function(e){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
 
-  selectFontStyle.onchange = function(){
-    editableText.style.fontFamily = this.value;
-  }
+  selectedFontData = setSelectedFontData(selectedFont);
 
-  Array.from(fonts).forEach(button=>button.click())
+  fontType.innerHTML = '';
+  if(selectedFontData['staticStyles']['hasStaticStyles']){
+    fontType.append(buildStaticSelectForm(selectedFontData['staticStyles']['styles']));
+    selectFontStyle = document.querySelector('#select-style');
+    selectFontStyle.onchange = function(){
+      editableText.style.fontFamily = this.value;
+    }
+  }
 })

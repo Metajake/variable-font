@@ -16,23 +16,22 @@ html(lang="en")
       .section#font-controls.is-paddingless-bottom.has-padding-1-top-mobile
         .container
           .columns.is-variable.is-8.is-multiline.is-vcentered
-            .column
+            #font-type.column.is-narrow
               form
                 .field
                   .control.is-extended
                     .select.is-fullwidth-mobile
-                      label
-                        select#select-style.select-field
-                          option(value="Animal-reg") Regular
-                          option(value="Animal-demi") Demi Bold
-            .column
+                      select#select-style.select-field
+                        option(value="Animal-reg") Regular
+                        option(value="Animal-demi") Demi Bold
+            #font-properties.column.is-narrow
               form.is-flex.has-align-center
                 p.has-margin-right.is-hidden-touch Size
                 .control.is-flex.has-align-center.is-fullwidth-mobile
                   input#range-size.input.slider.is-paddingless.is-fullwidth-mobile(type="range" min="10" max="50")
-            .column.is-full-mobile.is-half-desktop
+            .column.is-full-mobile
               .columns.is-mobile
-                .column.is-half-mobile
+                #font-sets.column.is-half-mobile.is-narrow
                   form.is-flex
                     p.has-margin-right Stylistic&nbsp;Sets
                     .field.is-grouped
@@ -42,7 +41,7 @@ html(lang="en")
                         a.is-disabled B
                       .control.is-flex.has-align-center
                         a.is-disabled C
-                .column.is-half-mobile
+                #font-toggle.column.is-half-mobile
                   form.is-flex.has-align-center.is-pulled-right
                     p.has-margin-right Variable
                     label.switch
@@ -52,7 +51,13 @@ html(lang="en")
       .container
         .columns
           .column.is-paddingless-bottom
-            #text-area(contenteditable)
-              p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
+            #text-area
+              p.is-inline-block(contenteditable) The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
+    #font-selection
+      ul
+        li staticVariable
+        li static
+        li variable
+        li UMAnimal
     script(src="static/js/fonts.js")
     script(src="static/js/base_ui.js")

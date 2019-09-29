@@ -13,33 +13,6 @@
   font-family: 'Animal-demi';
   src: url("../fonts/UM_Animal-DemiBold.otf");
 }
-* {
-  background-color: rgba(255,0,0,0.2);
-}
-* * {
-  background-color: rgba(0,255,0,0.2);
-}
-* * * {
-  background-color: rgba(0,0,255,0.2);
-}
-* * * * {
-  background-color: rgba(255,0,255,0.2);
-}
-* * * * * {
-  background-color: rgba(0,255,255,0.2);
-}
-* * * * * * {
-  background-color: rgba(255,255,0,0.2);
-}
-* * * * * * * {
-  background-color: rgba(255,0,0,0.2);
-}
-* * * * * * * * {
-  background-color: rgba(0,255,0,0.2);
-}
-* * * * * * * * * {
-  background-color: rgba(0,0,255,0.2);
-}
 body {
   font-family: "sans-serif";
   font-size: 1.2em;
@@ -97,6 +70,9 @@ input[type="range"].input:focus {
   border-radius: 50%;
   background: #000;
   cursor: pointer;
+}
+#select-style option {
+  text-transform: capitalize;
 }
 .select:not(.is-multiple):not(.is-loading)::after {
   content: '\f0d7';
