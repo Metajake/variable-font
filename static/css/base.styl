@@ -61,9 +61,6 @@ noBorder()
 .label
   font-weight:400
 
-.field-label
-  margin-right:.5rem
-
 .switch
   position: relative
   display: inline-block
@@ -113,7 +110,7 @@ noBorder()
     li
       display:inline
 
-#fixed-controls
+div.is-fixed-top
   position:fixed
   width:100%
   top:0
@@ -124,8 +121,7 @@ noBorder()
   margin-top:288px
 @media screen and (min-width:769px)
   #font-display
-    // margin-top:132px
-    margin-top:152px
+    margin-top:132px
 
 #text-area
   background-color:transparent
@@ -137,35 +133,22 @@ noBorder()
     font-variation-settings: "wght" var(--wght), "ital" var(--ital) ;
     /* font-variation-settings: "wght" 459, "ital" 25 ; */
 
-.has-pad-right-tablet
-  padding-right:0
-@media screen and (min-width:769px)
-  .has-pad-right-tablet
-    padding-right:1.5rem
-
-.is-width-60-desktop
-  width:100%
-@media screen and (min-width:1024px)
-  .is-width-60-desktop
-    width:60%
-
-.is-width-80-tablet
-  width:100%
-@media screen and (min-width:769px)
-  .is-width-80-tablet
-    width:80%
+.has-margin-right
+  margin-right:1rem
 
 .has-align-center
   align-items:center
-
-.has-justified-right
-  justify-content: right
-
-.has-flex-grow-unset
-  flex-grow: unset !important
 
 .is-bottom-paddingless
   padding-bottom:0 !important
 
 .is-top-paddingless
   padding-top:0 !important
+
+@media only screen and (max-width: 768px)
+  .select.is-fullwidth-mobile
+    width:100%
+    select
+      width:100%
+  .is-fullwidth-mobile
+    width:100%
