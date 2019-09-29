@@ -12,7 +12,7 @@ html(lang="en")
     
   body
     div.is-fixed-top
-      .section#font-controls.is-bottom-paddingless
+      .section#font-controls.is-paddingless-bottom.has-padding-1-top-mobile
         .container
           .columns.is-variable.is-8.is-multiline.is-vcentered
             .column
@@ -32,7 +32,7 @@ html(lang="en")
               .columns.is-mobile
                 .column.is-half-mobile
                   form.is-flex
-                    p Stylistic&nbsp;Sets
+                    p.has-margin-right Stylistic&nbsp;Sets
                     .field.is-grouped
                       .control.is-flex.has-align-center
                         a.is-disabled A
@@ -41,15 +41,15 @@ html(lang="en")
                       .control.is-flex.has-align-center
                         a.is-disabled C
                 .column.is-half-mobile
-                  form.is-flex.is-pulled-right
-                    p Variable
+                  form.is-flex.has-align-center.is-pulled-right
+                    p.has-margin-right Variable
                     label.switch
                       input(type="checkbox")
                       span.toggle.round
-    #font-display.section.is-top-paddingless.is-bottom-paddingless
+    #font-display.section.is-paddingless-top.is-paddingless-bottom
       .container
         .columns
-          .column.is-bottom-paddingless
+          .column.is-paddingless-bottom
             #text-area(contenteditable)
               p The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
     script(src="static/js/fonts.js")

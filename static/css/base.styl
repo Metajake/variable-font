@@ -46,17 +46,16 @@ form *
 
 input[type="range"]
   height:1px
+  &.input
+    &:active
+      noBorder()
+    &:focus
+      noBorder()
 
 noBorder()
   box-shadow:none
   border-color:#dbdbdb
   outline:none
-
-.input
-  &:active
-    noBorder()
-  &:focus
-    noBorder()
 
 .label
   font-weight:400
@@ -139,10 +138,10 @@ div.is-fixed-top
 .has-align-center
   align-items:center
 
-.is-bottom-paddingless
+.is-paddingless-bottom
   padding-bottom:0 !important
 
-.is-top-paddingless
+.is-paddingless-top
   padding-top:0 !important
 
 @media only screen and (max-width: 768px)
@@ -152,3 +151,5 @@ div.is-fixed-top
       width:100%
   .is-fullwidth-mobile
     width:100%
+  .has-padding-1-top-mobile
+    padding-top:1.5rem !important
