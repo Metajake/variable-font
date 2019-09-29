@@ -52,6 +52,28 @@ input[type="range"]
     &:focus
       noBorder()
 
+.slider
+  -webkit-appearance: none
+  width: 100%
+  height: 15px
+  border-radius: 5px
+  background: #d3d3d3
+  outline: none
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    width: 15px
+    height: 15px
+    border-radius: 50%
+    background: black
+    cursor: pointer
+  &::-moz-range-thumb
+  width: 15px
+  height: 15px
+  border-radius: 50%
+  background: black
+  cursor: pointer
+
 noBorder()
   box-shadow:none
   border-color:#dbdbdb
