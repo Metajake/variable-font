@@ -1,5 +1,10 @@
 highlightColor = #F6A920
 
+noBorder()
+  box-shadow:none
+  border-color:#dbdbdb
+  outline:none
+
 @font-face{
   font-family: 'Aretha Variable';
   font-weight: 100 900;
@@ -41,6 +46,9 @@ a
     opacity: 0.25
     pointer-events: none
 
+.label
+  font-weight:400
+
 form *
   font-family:"Animal-reg"
 
@@ -68,19 +76,57 @@ input[type="range"]
     background: black
     cursor: pointer
   &::-moz-range-thumb
-  width: 15px
-  height: 15px
-  border-radius: 50%
-  background: black
-  cursor: pointer
+    width: 15px
+    height: 15px
+    border-radius: 50%
+    background: black
+    cursor: pointer
 
-noBorder()
-  box-shadow:none
-  border-color:#dbdbdb
-  outline:none
+.select:not(.is-multiple):not(.is-loading)::after
+  content: '\f0d7'
+  font: normal normal normal 17px/1 FontAwesome
+  color: black
+  height: 0.625em
+  width: 0.625em
+  display:block
+  position: absolute
+  right: 11px
+  margin-top: -0.5em
+  top: 50%
+  pointer-events: none
+  -webkit-transform-origin: center
+  -ms-transform-origin: center
+  transform-origin: center
+  transform: scale(.75,1.25)
 
-.label
-  font-weight:400
+select::-ms-expand
+  display: none
+
+.select select
+  border-radius:2px
+
+@media screen and (max-width: 768px)
+  .select:not(.is-multiple):not(.is-loading)::after
+    margin-top: -0.6em
+  .select select
+    height:2em
+//   -webkit-appearance: none
+//   -moz-appearance: none
+//   appearance: none
+//   display: block
+//   width: 100%
+//   max-width: 320px
+//   float: right
+//   margin: 5px 0px
+//   padding: 0px 24px
+//   font-size: 16px
+//   line-height: 1.75
+//   color: #333
+//   background-color: #ffffff
+//   background-image: none
+//   border: 1px solid #0ebeff
+//   -ms-word-break: normal
+//   word-break: normal
 
 .switch
   position: relative
