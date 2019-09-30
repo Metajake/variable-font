@@ -157,9 +157,6 @@ input[type="range"].input:focus {
 .toggle.round:before {
   border-radius: 50%;
 }
-#font-selection ul li {
-  display: inline;
-}
 #font-display {
   margin-top: 288px;
 }
@@ -183,6 +180,9 @@ input[type="range"].input:focus {
 }
 #text-area p:focus {
   outline: none !important;
+}
+#font-selection ul li {
+  display: inline;
 }
 div.is-fixed-top {
   position: fixed;

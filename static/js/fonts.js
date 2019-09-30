@@ -3,11 +3,43 @@ var fontData = {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
-        one:{
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
+          hasSubStyles: true,
+          subStyles: ['one','two']
+        }
+      }
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: false,
+      sets: []
+    },
+    variable: {
+      hasVariable: false,
+      variableProperties:[]
+    }
+  },
+  umAnimalStatic: {
+    staticStyles: {
+      hasStaticStyles: true,
+      styles: {
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
           hasSubStyles: true,
           subStyles: ['one','two']
         },
-        two:{
+        1:{
+          styleName: 'Demi Bold',
+          styleValue: 'Animal-demi',
+          hasSubStyles: false,
+          subStyles: []
+        },
+        2:{
+          styleName: 'Black',
+          styleValue: 'Animal-black',
           hasSubStyles: false,
           subStyles: []
         }
@@ -19,11 +51,67 @@ var fontData = {
       sets: []
     },
     variable: {
-      hasVariable: true,
-      variableProperties:['width','italic','size']
+      hasVariable: false,
+      variableProperties:[]
     }
   },
-  umAnimalStatic: {
+  variable: {
+    staticStyles: {
+      hasStaticStyles: true,
+      styles: {
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
+          hasSubStyles: true,
+          subStyles: ['one','two']
+        }
+      }
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: false,
+      sets: []
+    },
+    variable: {
+      hasVariable: true,
+      variableProperties:[]
+    }
+  },
+  static: {
+    staticStyles: {
+      hasStaticStyles: true,
+      styles: {
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
+          hasSubStyles: true,
+          subStyles: ['one','two']
+        },
+        1:{
+          styleName: 'Demi Bold',
+          styleValue: 'Animal-demi',
+          hasSubStyles: false,
+          subStyles: []
+        },
+        2:{
+          styleName: 'Black',
+          styleValue: 'Animal-black',
+          hasSubStyles: false,
+          subStyles: []
+        }
+      }
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: false,
+      sets: []
+    },
+    variable: {
+      hasVariable: false,
+      variableProperties:[]
+    }
+  },
+  staticWithSets: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
@@ -56,47 +144,5 @@ var fontData = {
       hasVariable: false,
       variableProperties:[]
     }
-  },
-  variable: {
-    staticStyles: {
-      hasStaticStyles: false,
-    },
-    staticProperties: ['size'],
-    styleSets: {
-      hasSets: true,
-      sets: ['one','two','three']
-    },
-    variable: {
-      hasVariable: true,
-      variableProperties:['weight','italic']
-    }
-  },
-  UMAnimal: {
-    staticStyles: {
-      hasStaticStyles: true,
-      styles: {
-        black:{
-          hasSubStyles: false,
-          subStyles: []
-        },
-        demiBold:{
-          hasSubStyles: false,
-          subStyles: []
-        },
-        regular:{
-          hasSubStyles: false,
-          subStyles: []
-        }
-      }
-    },
-    staticProperties: ['size'],
-    styleSets: {
-      hasSets: false,
-      sets: []
-    },
-    variable: {
-      hasVariable: false,
-      variableProperties:[]
-    }
-  },
+  }
 }

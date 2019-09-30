@@ -92,6 +92,7 @@ select::-ms-expand
   .select select
     height:2em
 
+//--- Property Range Sliders ----//
 input[type="range"]
   height:1px
   &.input
@@ -167,11 +168,7 @@ switchHeight = 22px
   &:before
     border-radius: 50%
 
-#font-selection
-  ul
-    li
-      display:inline
-
+//--- After Controls---//
 #font-display
   margin-top:288px
 @media screen and (min-width:769px)
@@ -191,6 +188,11 @@ switchHeight = 22px
     /* font-variation-settings: "wght" 459, "ital" 25 */
     &:focus
       outline:none !important
+
+#font-selection
+  ul
+    li
+      display:inline
 
 //----------HELPERS--------------//
 div.is-fixed-top

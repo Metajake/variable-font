@@ -13,7 +13,6 @@ var body = document.body,
     rangeSliderSize = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
-    selectedFont = fontChoices[0],
     selectedFontData = {}
     fontType = document.querySelector('#font-type');
     fontSets = document.querySelector('#font-sets');
@@ -23,7 +22,7 @@ function capitalize(string){
 }
 
 function setSelectedFontData(fontName){
-  return fontData[fontName.innerHTML]
+  return fontData[fontName]
 }
 
 function createElementWithAttributes(elementType, idName, classNames){
@@ -89,6 +88,11 @@ function initStylisticSetsForm(fontDataToInitFrom){
   }
 }
 
+function initFontControls(dataSet){
+  initStaticSelectionForms(dataSet)
+  initStylisticSetsForm(dataSet)
+}
+
 function initEditableTextEvents(){
   editableText.addEventListener('input', function(){
     if(editableText.innerHTML == ''){
@@ -105,9 +109,14 @@ window.addEventListener("load", function(e){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
 
-  selectedFontData = setSelectedFontData(selectedFont);
-  initStaticSelectionForms(selectedFontData)
-  initStylisticSetsForm(selectedFontData)
-
+  selectedFontData = setSelectedFontData(fontChoices[0].innerHTML);
+  initFontControls(selectedFontData)
   initEditableTextEvents()
+
+  fontChoices.forEach(function(choice){
+    choice.addEventListener('click',function(event){
+      selectedFontData = setSelectedFontData(event.target.innerHTML)
+      initFontControls(selectedFontData)
+    })
+  })
 })
