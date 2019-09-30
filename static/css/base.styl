@@ -123,15 +123,17 @@ switchHeight = 22px
   position: relative
   display: inline-block
   width: 40px
-  height: switchHeight + 1px
+  height: switchHeight
   input
     opacity: 0
     width: 0
     height: 0
+    &:checked + .toggle
+      background-color: black
     &:checked + .toggle:before
-      -webkit-transform: translateX(switchHeight - 6px)
-      -ms-transform: translateX(switchHeight - 6px)
-      transform: translateX(switchHeight - 6px)
+      -webkit-transform: translateX(switchHeight - 5px)
+      -ms-transform: translateX(switchHeight - 5px)
+      transform: translateX(switchHeight - 5px)
 
 .toggle
   position: absolute
@@ -151,7 +153,7 @@ switchHeight = 22px
     left: 2px
     top:1px
     background-color: white
-    box-shadow:0px 2px 2px grey
+    box-shadow:0px 2px 2px rgba(0,0,0,0.6)
     -webkit-transition: .4s
     transition: .4s
 
