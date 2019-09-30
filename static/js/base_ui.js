@@ -57,7 +57,6 @@ function buildStylisticSetsForm(options){
   formLabel.innerHTML = 'Stylistic&nbsp;Sets';
   form.append(formLabel)
   form.append(createElementWithAttributes('div','',['field', 'is-grouped']))
-  console.log(options)
   for(set in options){
     control = createElementWithAttributes('div','',['control','is-flex','has-align-center'])
     anchor = document.createElement('a')
@@ -88,9 +87,11 @@ function initStylisticSetsForm(fontDataToInitFrom){
   }
 }
 
-function initFontControls(dataSet){
-  initStaticSelectionForms(dataSet)
-  initStylisticSetsForm(dataSet)
+function initFontSelection(fontSelection){
+  selectedFontData = setSelectedFontData(fontSelection);
+  initStaticSelectionForms(selectedFontData)
+  initStylisticSetsForm(selectedFontData)
+  editableText.style.fontFamily = fontSelection
 }
 
 function initEditableTextEvents(){
@@ -109,14 +110,12 @@ window.addEventListener("load", function(e){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
 
-  selectedFontData = setSelectedFontData(fontChoices[0].innerHTML);
-  initFontControls(selectedFontData)
+  initFontSelection(fontChoices[0].innerHTML)
   initEditableTextEvents()
 
   fontChoices.forEach(function(choice){
     choice.addEventListener('click',function(event){
-      selectedFontData = setSelectedFontData(event.target.innerHTML)
-      initFontControls(selectedFontData)
+      initFontSelection(event.target.innerHTML)
     })
   })
 })

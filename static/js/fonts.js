@@ -1,4 +1,38 @@
 var fontData = {
+  umAnimalStatic: {
+    staticStyles: {
+      hasStaticStyles: true,
+      styles: {
+        0:{
+          styleName: 'regular',
+          styleValue: 'umAnimalStatic',
+          hasSubStyles: true,
+          subStyles: ['one','two']
+        },
+        1:{
+          styleName: 'Demi Bold',
+          styleValue: 'umAnimalStatic-demi',
+          hasSubStyles: false,
+          subStyles: []
+        },
+        2:{
+          styleName: 'Black',
+          styleValue: 'umAnimalStatic-black',
+          hasSubStyles: false,
+          subStyles: []
+        }
+      }
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: false,
+      sets: []
+    },
+    variable: {
+      hasVariable: false,
+      variableProperties:[]
+    }
+  },
   staticVariable: {
     staticStyles: {
       hasStaticStyles: true,
@@ -21,51 +55,10 @@ var fontData = {
       variableProperties:[]
     }
   },
-  umAnimalStatic: {
+  Aretha: {
     staticStyles: {
-      hasStaticStyles: true,
-      styles: {
-        0:{
-          styleName: 'regular',
-          styleValue: 'Animal-reg',
-          hasSubStyles: true,
-          subStyles: ['one','two']
-        },
-        1:{
-          styleName: 'Demi Bold',
-          styleValue: 'Animal-demi',
-          hasSubStyles: false,
-          subStyles: []
-        },
-        2:{
-          styleName: 'Black',
-          styleValue: 'Animal-black',
-          hasSubStyles: false,
-          subStyles: []
-        }
-      }
-    },
-    staticProperties: ['size'],
-    styleSets: {
-      hasSets: false,
-      sets: []
-    },
-    variable: {
-      hasVariable: false,
-      variableProperties:[]
-    }
-  },
-  variable: {
-    staticStyles: {
-      hasStaticStyles: true,
-      styles: {
-        0:{
-          styleName: 'regular',
-          styleValue: 'Animal-reg',
-          hasSubStyles: true,
-          subStyles: ['one','two']
-        }
-      }
+      hasStaticStyles: false,
+      styles: {}
     },
     staticProperties: ['size'],
     styleSets: {
@@ -74,7 +67,7 @@ var fontData = {
     },
     variable: {
       hasVariable: true,
-      variableProperties:[]
+      variableProperties:['wght','ital']
     }
   },
   static: {
