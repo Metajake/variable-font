@@ -33,6 +33,7 @@ noBorder()
 // * * * * * * * * { background-color: rgba(0,255,0,.2); }
 // * * * * * * * * * { background-color: rgba(0,0,255,.2); }
 
+//----------------GLOBALS----------------------//
 body
   font-family:"sans-serif"
   font-size:1.2em
@@ -52,36 +53,7 @@ a
 form *
   font-family:"Animal-reg"
 
-input[type="range"]
-  height:1px
-  &.input
-    &:active
-      noBorder()
-    &:focus
-      noBorder()
-
-.slider
-  -webkit-appearance: none
-  width: 100%
-  height: 15px
-  border-radius: 5px
-  background: #d3d3d3
-  outline: none
-  &::-webkit-slider-thumb
-    -webkit-appearance: none
-    appearance: none
-    width: 15px
-    height: 15px
-    border-radius: 50%
-    background: black
-    cursor: pointer
-  &::-moz-range-thumb
-    width: 15px
-    height: 15px
-    border-radius: 50%
-    background: black
-    cursor: pointer
-
+//------------------AREAS---------------------//
 #select-style
   option
     text-transform: capitalize
@@ -115,23 +87,51 @@ select::-ms-expand
   .select select
     height:2em
 
+input[type="range"]
+  height:1px
+  &.input
+    &:active
+      noBorder()
+    &:focus
+      noBorder()
+
+.slider
+  -webkit-appearance: none
+  width: 100%
+  height: 15px
+  border-radius: 5px
+  background: #d3d3d3
+  outline: none
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    width: 15px
+    height: 15px
+    border-radius: 50%
+    background: black
+    cursor: pointer
+  &::-moz-range-thumb
+    width: 15px
+    height: 15px
+    border-radius: 50%
+    background: black
+    cursor: pointer
+
+//-----VariableToggle----//
+switchHeight = 22px
 .switch
   position: relative
   display: inline-block
-  width: 60px
-  height: 34px
+  width: 40px
+  height: switchHeight + 1px
   input
     opacity: 0
     width: 0
     height: 0
-    &:checked + .toggle
-      background-color: highlightColor
     &:checked + .toggle:before
-      -webkit-transform: translateX(26px)
-      -ms-transform: translateX(26px)
-      transform: translateX(26px)
-    &:focus + .toggle
-      box-shadow: 0 0 1px highlightColor
+      -webkit-transform: translateX(switchHeight - 6px)
+      -ms-transform: translateX(switchHeight - 6px)
+      transform: translateX(switchHeight - 6px)
 
 .toggle
   position: absolute
@@ -140,17 +140,18 @@ select::-ms-expand
   left: 0
   right: 0
   bottom: 0
-  background-color: #ccc
+  background-color: #ddd
   -webkit-transition: .4s
   transition: .4s
   &:before
     position: absolute
     content: ""
-    height: 26px
-    width: 26px
-    left: 4px
-    bottom: 4px
+    height: switchHeight - 2px
+    width: switchHeight - 2px
+    left: 2px
+    top:1px
     background-color: white
+    box-shadow:0px 2px 2px grey
     -webkit-transition: .4s
     transition: .4s
 
@@ -163,13 +164,6 @@ select::-ms-expand
   ul
     li
       display:inline
-
-div.is-fixed-top
-  position:fixed
-  width:100%
-  top:0
-  z-index:1
-  background-color:white
 
 #font-display
   margin-top:288px
@@ -186,6 +180,14 @@ div.is-fixed-top
     --ital:75;
     font-variation-settings: "wght" var(--wght), "ital" var(--ital) ;
     /* font-variation-settings: "wght" 459, "ital" 25 ; */
+
+//----------HELPERS--------------//
+div.is-fixed-top
+  position:fixed
+  width:100%
+  top:0
+  z-index:1
+  background-color:white
 
 .has-margin-right
   margin-right:1rem
