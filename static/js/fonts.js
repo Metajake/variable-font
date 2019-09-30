@@ -23,7 +23,7 @@ var fontData = {
       variableProperties:['width','italic','size']
     }
   },
-  static: {
+  umAnimalStatic: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
@@ -50,7 +50,7 @@ var fontData = {
     staticProperties: ['size'],
     styleSets: {
       hasSets: true,
-      sets: ['one','two','three']
+      sets: ['A','B','C']
     },
     variable: {
       hasVariable: false,

@@ -13,9 +13,10 @@ var body = document.body,
     rangeSliderSize = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
-    selectedFont = fontChoices[1],
+    selectedFont = fontChoices[0],
     selectedFontData = {}
     fontType = document.querySelector('#font-type');
+    fontSets = document.querySelector('#font-sets');
 
 function capitalize(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -49,6 +50,53 @@ function buildStaticSelectForm(options){
   return form;
 }
 
+function buildStylisticSetsForm(options){
+  form = document.createElement("form")
+  form.className = 'is-flex';
+  formLabel = document.createElement('p')
+  formLabel.className = 'has-margin-right'
+  formLabel.innerHTML = 'Stylistic&nbsp;Sets';
+  form.append(formLabel)
+  form.append(createElementWithAttributes('div','',['field', 'is-grouped']))
+  console.log(options)
+  for(set in options){
+    control = createElementWithAttributes('div','',['control','is-flex','has-align-center'])
+    anchor = document.createElement('a')
+    anchor.className = 'is-disabled';
+    anchor.innerHTML = options[set];
+    control.append(anchor)
+    form.childNodes[1].append(control)
+  }
+  return form;
+}
+
+function initStaticSelectionForms(fontDataToInitFrom){
+  fontType.innerHTML = '';
+  if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
+    fontType.append(buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']));
+    selectFontStyle = document.querySelector('#select-style');
+    selectFontStyle.onchange = function(){
+      editableText.style.fontFamily = this.value;
+    }
+  }
+}
+
+function initStylisticSetsForm(fontDataToInitFrom){
+  fontSets.innerHTML = '';
+  if(fontDataToInitFrom['styleSets']['hasSets']){
+    fontSets.append(buildStylisticSetsForm(fontDataToInitFrom['styleSets']['sets']));
+    // ToDo Handle What to do with Style Set Anchors
+  }
+}
+
+function initEditableTextEvents(){
+  editableText.addEventListener('input', function(){
+    if(editableText.innerHTML == ''){
+      editableText.innerHTML = '(Type Here)';
+    }
+  })
+}
+
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
 
@@ -58,20 +106,8 @@ window.addEventListener("load", function(e){
   }
 
   selectedFontData = setSelectedFontData(selectedFont);
+  initStaticSelectionForms(selectedFontData)
+  initStylisticSetsForm(selectedFontData)
 
-  fontType.innerHTML = '';
-  if(selectedFontData['staticStyles']['hasStaticStyles']){
-    fontType.append(buildStaticSelectForm(selectedFontData['staticStyles']['styles']));
-    selectFontStyle = document.querySelector('#select-style');
-    selectFontStyle.onchange = function(){
-      editableText.style.fontFamily = this.value;
-    }
-  }
-
-  editableText.addEventListener('input', function(){
-    console.log(editableText.innerHTML.length)
-    if(editableText.innerHTML == ''){
-      editableText.innerHTML = '(Type Here)';
-    }
-  })
+  initEditableTextEvents()
 })

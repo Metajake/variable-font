@@ -17,6 +17,7 @@ html(lang="en")
         .container
           .columns.is-variable.is-8.is-multiline.is-vcentered
             #font-type.column.is-narrow
+              // This form gets erased and replaced with JS driven content
               form
                 .field
                   .control.is-extended
@@ -55,9 +56,10 @@ html(lang="en")
               p.is-inline-block(contenteditable) The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
     #font-selection
       ul
-        li staticVariable
+        li umAnimalStatic
+        li staticWithSets
         li static
         li variable
-        li UMAnimal
+        li staticVariable
     script(src="static/js/fonts.js")
     script(src="static/js/base_ui.js")
