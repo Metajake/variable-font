@@ -68,6 +68,10 @@ function buildStylisticSetsForm(options){
   return form;
 }
 
+function buildVariableSliderForm(variableProperty, initValue, startValue, endValue){
+  console.log(variableProperty)
+}
+
 function initStaticSelectionForms(fontDataToInitFrom){
   fontType.innerHTML = '';
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
@@ -87,35 +91,46 @@ function initStylisticSetsForm(fontDataToInitFrom){
   }
 }
 
+function initVariablePropertiesForm(fontDataToInitFrom){
+  if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
+    for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
+      propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
+      editableText.style.setProperty('--'+property, propertyData['init'])
+      buildVariableSliderForm(property, propertyData['init'], propertyData['start'], propertyData['end'])
+    }
+  }
+}
+
 function initFontSelection(fontSelection){
   selectedFontData = setSelectedFontData(fontSelection);
   initStaticSelectionForms(selectedFontData)
   initStylisticSetsForm(selectedFontData)
+  initVariablePropertiesForm(selectedFontData)
   editableText.style.fontFamily = fontSelection
 }
 
-function initEditableTextEvents(){
+function initEvents(){
   editableText.addEventListener('input', function(){
     if(editableText.innerHTML == ''){
       editableText.innerHTML = '(Type Here)';
     }
   })
-}
-
-window.addEventListener("load", function(e){
-  textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
-
-  rangeSliderSize.value= 30;
-  rangeSliderSize.oninput = function(){
-    editableText.style.fontSize = (this.value * 0.1) +"rem";
-  }
-
-  initFontSelection(fontChoices[0].innerHTML)
-  initEditableTextEvents()
 
   fontChoices.forEach(function(choice){
     choice.addEventListener('click',function(event){
       initFontSelection(event.target.innerHTML)
     })
   })
+}
+
+window.addEventListener("load", function(e){
+  textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
+  rangeSliderSize.value= 30;
+  rangeSliderSize.oninput = function(){
+    editableText.style.fontSize = (this.value * 0.1) +"rem";
+  }
+
+  initFontSelection(fontChoices[0].innerHTML)
+
+  initEvents()
 })
