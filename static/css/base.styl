@@ -23,6 +23,11 @@ noBorder()
   src: url('../fonts/UM_Animal-DemiBold.otf');
 }
 
+@font-face{
+  font-family: 'Animal-black';
+  src: url('../fonts/UM_Animal-Black.otf');
+}
+
 // * { background-color: rgba(255,0,0,.2); }
 // * * { background-color: rgba(0,255,0,.2); }
 // * * * { background-color: rgba(0,0,255,.2); }
@@ -176,12 +181,16 @@ switchHeight = 22px
 #text-area
   background-color:transparent
   p
-    font-family:'Animal-reg';
-    font-size: 2.5rem;
-    --wght:500;
-    --ital:75;
-    font-variation-settings: "wght" var(--wght), "ital" var(--ital) ;
-    /* font-variation-settings: "wght" 459, "ital" 25 ; */
+    width:100%
+    min-height:200px
+    font-family:'Animal-reg'
+    font-size: 2.5rem
+    --wght:500
+    --ital:75
+    font-variation-settings: "wght" var(--wght), "ital" var(--ital)
+    /* font-variation-settings: "wght" 459, "ital" 25 */
+    &:focus
+      outline:none !important
 
 //----------HELPERS--------------//
 div.is-fixed-top

@@ -67,4 +67,11 @@ window.addEventListener("load", function(e){
       editableText.style.fontFamily = this.value;
     }
   }
+
+  editableText.addEventListener('input', function(){
+    console.log(editableText.innerHTML.length)
+    if(editableText.innerHTML == ''){
+      editableText.innerHTML = '(Type Here)';
+    }
+  })
 })

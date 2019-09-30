@@ -38,6 +38,12 @@ var fontData = {
           styleValue: 'Animal-demi',
           hasSubStyles: false,
           subStyles: []
+        },
+        2:{
+          styleName: 'Black',
+          styleValue: 'Animal-black',
+          hasSubStyles: false,
+          subStyles: []
         }
       }
     },
