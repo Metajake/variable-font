@@ -118,7 +118,7 @@ function initEvents(){
 
   fontChoices.forEach(function(choice){
     choice.addEventListener('click',function(event){
-      initFontSelection(event.target.innerHTML)
+      initFontSelection(event.target.innerHTML.trim())
     })
   })
 }
@@ -130,7 +130,7 @@ window.addEventListener("load", function(e){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
 
-  initFontSelection(fontChoices[0].innerHTML)
+  initFontSelection(fontChoices[0].innerHTML.trim())
 
   initEvents()
 })
