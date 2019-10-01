@@ -1,4 +1,3 @@
-// console.log('hello world');
 var body = document.body,
     html = document.documentElement,
     docHeight = Math.max(
@@ -34,7 +33,14 @@ function createElementWithAttributes(elementType, idName, classNames){
   return element;
 }
 
+function setInputEvent(inputToSet, property){
+  inputToSet.oninput = function(){
+    editableText.style.setProperty('--' + property, inputToSet.value)
+  }
+}
+
 function buildStaticSelectForm(options){
+  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
   form = document.createElement("form")
   form.append(createElementWithAttributes('div', '', ['field']))
   form.childNodes[0].append(createElementWithAttributes('div', '', ['control','is-extended']))
@@ -46,7 +52,8 @@ function buildStaticSelectForm(options){
     option.innerHTML = capitalize(selectedFontData['staticStyles']['styles'][style]['styleName'])
     form.childNodes[0].childNodes[0].childNodes[0].childNodes[0].append(option)
   }
-  return form;
+  formContainer.append(form)
+  return formContainer;
 }
 
 function buildStyleSetOption(styleSet, styleSetOptions){
@@ -59,29 +66,41 @@ function buildStyleSetOption(styleSet, styleSetOptions){
 }
 
 function buildStylisticSetsForm(options){
-  form = document.createElement("form")
-  form.className = 'is-flex';
-  formLabel = document.createElement('p')
-  formLabel.className = 'has-margin-right'
+  form = createElementWithAttributes("form", '', ['is-flex']);
+  formLabel = createElementWithAttributes('p', '', ['has-margin-right'])
   formLabel.innerHTML = 'Stylistic&nbsp;Sets';
   form.append(formLabel)
   form.append(createElementWithAttributes('div','',['field', 'is-grouped']))
   for(set in options){
     form.childNodes[1].append(buildStyleSetOption(set, options))
   }
-  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
-  formContainer.append(form)
-  return formContainer;
+  return form;
 }
 
-function buildVariableSliderForm(variableProperty, initValue, startValue, endValue){
-  console.log(variableProperty)
+function buildVariableSliderForm(variableProperty, propName, startValue, minValue, maxValue){
+  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
+  form = createElementWithAttributes("form", '', ['is-flex','has-align-center']);
+  formLabel = createElementWithAttributes('p','', ['has-margin-right','is-hidden-touch'])
+  formLabel.innerHTML = propName;
+  form.append(formLabel)
+  formControl = createElementWithAttributes('div','',['control','is-flex','has-align-center','is-fullwidth-mobile'])
+  sliderInput = createElementWithAttributes('input', variableProperty, ['input','slider','is-paddingless','is-fullwidth-mobile'])
+  sliderInput.setAttribute('type','range')
+  sliderInput.setAttribute('min', minValue)
+  sliderInput.setAttribute('max', maxValue)
+  sliderInput.setAttribute('value', startValue)
+  setInputEvent(sliderInput, variableProperty)
+  formControl.append(sliderInput);
+  form.append(formControl);
+  formContainer.append(form);
+  return formContainer
 }
 
 function initStaticSelectionForms(fontDataToInitFrom){
   fontType.innerHTML = '';
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
-    fontType.append(buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']));
+    staticSelectionForm = buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']);
+    fontType.append(staticSelectionForm);
     selectFontStyle = document.querySelector('#select-style');
     selectFontStyle.onchange = function(){
       editableText.style.fontFamily = this.value;
@@ -98,13 +117,13 @@ function initStylisticSetsForm(fontDataToInitFrom){
 }
 
 function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
+  // fontType.innerHTML = '';
   //If Variable Style, but No Static Styles
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
     editableText.classList.add(fontSelection)
     for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
       propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
-      editableText.style.setProperty('--'+property, propertyData['init'])
-      buildVariableSliderForm(property, propertyData['init'], propertyData['start'], propertyData['end'])
+      fontType.append( buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
     }
   }
 }
@@ -121,7 +140,7 @@ function initEvents(){
   rangeSliderSize.oninput = function(){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
-  
+
   editableText.addEventListener('input', function(){
     if(editableText.innerHTML == ''){
       editableText.innerHTML = '(Type Here)';
@@ -138,7 +157,7 @@ function initEvents(){
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
 
-  initFontSelection(fontChoices[1].innerHTML.trim())
+  initFontSelection(fontChoices[0].innerHTML.trim())
 
   initEvents()
 })

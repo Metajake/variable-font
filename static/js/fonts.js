@@ -47,12 +47,14 @@ var fontData = {
       hasVariable: true,
       variableProperties:{
         wght:{
-          init:350,
+          name:"Weight",
+          init:500,
           start:100,
           end:900
         },
         ital:{
-          init: 75,
+          name: "Italic",
+          init: 50,
           start:0,
           end:100
         }
