@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'aretha';
+  font-family: 'arethaVariable';
   font-weight: 100 900;
   font-style: normal;
   font-stretch: normal;
@@ -172,10 +172,13 @@ input[type="range"].input:focus {
   width: 100%;
   min-height: 200px;
   font-size: 2.5rem;
-/* font-variation-settings: "wght" 459, "ital" 25 */
 }
 #text-area p:focus {
   outline: none !important;
+}
+#text-area p.arethaVariable {
+  font-variation-settings: "wght" 500, "ital" 75;
+/* font-variation-settings: "wght" 459, "ital" 25 */
 }
 #font-selection ul li {
   display: inline;

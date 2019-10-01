@@ -16,12 +16,13 @@ html(lang="en")
       .section#font-controls.has-padding-1-top-mobile
         .container
           .columns.is-variable.is-8.is-multiline.is-vcentered
-            #font-type.column.is-narrow
+            .column.is-narrow
+              #font-type.columns.is-variable.is-0-mobile
             #font-properties.column.is-narrow
               form.is-flex.has-align-center
                 p.has-margin-right.is-hidden-touch Size
                 .control.is-flex.has-align-center.is-fullwidth-mobile
-                  input#range-size.input.slider.is-paddingless.is-fullwidth-mobile(type="range" min="10" max="50")
+                  input#range-size.input.slider.is-paddingless.is-fullwidth-mobile(type="range" min="1" value="25" max="50")
             .column.is-full-mobile
               .columns.is-mobile.is-vcentered.is-variable.is-0-mobile
                 #font-sets.column.is-half-mobile.is-narrow
@@ -36,11 +37,11 @@ html(lang="en")
         .columns
           .column.is-paddingless-bottom
             #text-area
-              p.is-inline-block(contenteditable) The Quick Brown Fox Jumped Over the Lazy Brown Dog (Type Here)...
+              p.is-inline-block(contenteditable) ARETHA
     #font-selection
       ul
         li umAnimalStatic
-        li aretha 
+        li arethaVariable 
         li staticWithSets
         li staticVariable
     script(src="static/js/fonts.js")

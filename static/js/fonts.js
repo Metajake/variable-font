@@ -33,29 +33,7 @@ var fontData = {
       variableProperties:[]
     }
   },
-  staticVariable: {
-    staticStyles: {
-      hasStaticStyles: true,
-      styles: {
-        0:{
-          styleName: 'regular',
-          styleValue: 'Animal-reg',
-          hasSubStyles: true,
-          subStyles: ['one','two']
-        }
-      }
-    },
-    staticProperties: ['size'],
-    styleSets: {
-      hasSets: false,
-      sets: []
-    },
-    variable: {
-      hasVariable: false,
-      variableProperties:[]
-    }
-  },
-  aretha: {
+  arethaVariable: {
     staticStyles: {
       hasStaticStyles: false,
       styles: {}
@@ -114,5 +92,27 @@ var fontData = {
       hasVariable: false,
       variableProperties:[]
     }
-  }
+  },
+  staticVariable: {
+    staticStyles: {
+      hasStaticStyles: true,
+      styles: {
+        0:{
+          styleName: 'regular',
+          styleValue: 'Animal-reg',
+          hasSubStyles: true,
+          subStyles: ['one','two']
+        }
+      }
+    },
+    staticProperties: ['size'],
+    styleSets: {
+      hasSets: false,
+      sets: []
+    },
+    variable: {
+      hasVariable: false,
+      variableProperties:[]
+    }
+  },
 }

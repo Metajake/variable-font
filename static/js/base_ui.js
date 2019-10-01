@@ -49,6 +49,15 @@ function buildStaticSelectForm(options){
   return form;
 }
 
+function buildStyleSetOption(styleSet, styleSetOptions){
+  control = createElementWithAttributes('div','',['control','is-flex','has-align-center'])
+  anchor = document.createElement('a')
+  anchor.className = 'is-disabled';
+  anchor.innerHTML = styleSetOptions[styleSet];
+  control.append(anchor)
+  return control;
+}
+
 function buildStylisticSetsForm(options){
   form = document.createElement("form")
   form.className = 'is-flex';
@@ -58,14 +67,11 @@ function buildStylisticSetsForm(options){
   form.append(formLabel)
   form.append(createElementWithAttributes('div','',['field', 'is-grouped']))
   for(set in options){
-    control = createElementWithAttributes('div','',['control','is-flex','has-align-center'])
-    anchor = document.createElement('a')
-    anchor.className = 'is-disabled';
-    anchor.innerHTML = options[set];
-    control.append(anchor)
-    form.childNodes[1].append(control)
+    form.childNodes[1].append(buildStyleSetOption(set, options))
   }
-  return form;
+  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
+  formContainer.append(form)
+  return formContainer;
 }
 
 function buildVariableSliderForm(variableProperty, initValue, startValue, endValue){
@@ -91,8 +97,10 @@ function initStylisticSetsForm(fontDataToInitFrom){
   }
 }
 
-function initVariablePropertiesForm(fontDataToInitFrom){
+function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
+  //If Variable Style, but No Static Styles
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
+    editableText.classList.add(fontSelection)
     for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
       propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
       editableText.style.setProperty('--'+property, propertyData['init'])
@@ -105,11 +113,15 @@ function initFontSelection(fontSelection){
   selectedFontData = setSelectedFontData(fontSelection);
   initStaticSelectionForms(selectedFontData)
   initStylisticSetsForm(selectedFontData)
-  initVariablePropertiesForm(selectedFontData)
+  initVariablePropertiesForm(fontSelection, selectedFontData)
   editableText.style.fontFamily = fontSelection
 }
 
 function initEvents(){
+  rangeSliderSize.oninput = function(){
+    editableText.style.fontSize = (this.value * 0.1) +"rem";
+  }
+  
   editableText.addEventListener('input', function(){
     if(editableText.innerHTML == ''){
       editableText.innerHTML = '(Type Here)';
@@ -125,12 +137,8 @@ function initEvents(){
 
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
-  rangeSliderSize.value= 30;
-  rangeSliderSize.oninput = function(){
-    editableText.style.fontSize = (this.value * 0.1) +"rem";
-  }
 
-  initFontSelection(fontChoices[0].innerHTML.trim())
+  initFontSelection(fontChoices[1].innerHTML.trim())
 
   initEvents()
 })
