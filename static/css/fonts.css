@@ -1,0 +1,22 @@
+@font-face{
+  font-family: 'arethaVariable';
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: normal;
+  src: url('../fonts/ArethaGX.ttf') format('truetype-variations');
+}
+
+@font-face{
+  font-family: 'umAnimalStatic';
+  src: url('../fonts/UM_Animal-Regular.otf');
+}
+
+@font-face{
+  font-family: 'umAnimalStatic-demi';
+  src: url('../fonts/UM_Animal-DemiBold.otf');
+}
+
+@font-face{
+  font-family: 'umAnimalStatic-black';
+  src: url('../fonts/UM_Animal-Black.otf');
+}

@@ -9,6 +9,7 @@ var body = document.body,
     ),
     textArea = document.querySelector("#text-area"),
     fontControls = document.querySelector(".section#font-controls"),
+    fontDisplay = document.querySelector(".section#font-display"),
     rangeSliderSizeProperty = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
@@ -185,6 +186,8 @@ function initEvents(){
 
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
+  fontDisplay.style.marginTop = fontControls.offsetHeight + 20 + 'px';
+  editableText.focus();
 
   initFontSelection(fontChoices[0].innerHTML.trim())
 

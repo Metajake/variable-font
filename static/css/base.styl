@@ -5,29 +5,6 @@ noBorder()
   border-color:#dbdbdb
   outline:none
 
-@font-face{
-  font-family: 'arethaVariable';
-  font-weight: 100 900;
-  font-style: normal;
-  font-stretch: normal;
-  src: url('../fonts/ArethaGX.ttf') format('truetype-variations');
-}
-
-@font-face{
-  font-family: 'umAnimalStatic';
-  src: url('../fonts/UM_Animal-Regular.otf');
-}
-
-@font-face{
-  font-family: 'umAnimalStatic-demi';
-  src: url('../fonts/UM_Animal-DemiBold.otf');
-}
-
-@font-face{
-  font-family: 'umAnimalStatic-black';
-  src: url('../fonts/UM_Animal-Black.otf');
-}
-
 // * { background-color: rgba(255,0,0,.2); }
 // * * { background-color: rgba(0,255,0,.2); }
 // * * * { background-color: rgba(0,0,255,.2); }
@@ -52,11 +29,15 @@ a
     opacity: 0.25
     pointer-events: none
 
+form *
+  font-family:"umAnimalStatic"
+
 .label
   font-weight:400
 
-form *
-  font-family:"umAnimalStatic"
+@media only screen and (max-width:768px)
+  .column
+    padding:1.25rem
 
 //------------------AREAS---------------------//
 #font-controls
@@ -76,25 +57,28 @@ form *
   display:block
   position: absolute
   right: 11px
-  margin-top: -0.5em
+  margin-top: -0.6em
   top: 50%
   pointer-events: none
   -webkit-transform-origin: center
   -ms-transform-origin: center
   transform-origin: center
   transform: scale(.75,1.25)
+@media screen and (max-width: 768px)
+  .select:not(.is-multiple):not(.is-loading)::after
+    margin-top: -0.21em
 
 select::-ms-expand
   display: none
 
 .select select
   border-radius:2px
-
+  border-color: #dfdfdf
+  min-width:200px
 @media screen and (max-width: 768px)
-  .select:not(.is-multiple):not(.is-loading)::after
-    margin-top: -0.6em
   .select select
     height:2em
+    font-size:1.4em
 
 //--- Property Range Sliders ----//
 input[type="range"]
@@ -126,6 +110,14 @@ input[type="range"]
     border-radius: 50%
     background: black
     cursor: pointer
+@media only screen and (max-width:768px)
+  .slider
+    &::-webkit-slider-thumb
+      width:20px
+      height:20px
+    &::-moz-range-thumb
+      width:20px
+      height:20px
 
 //-----VariableToggle----//
 switchHeight = 22px

@@ -9,6 +9,7 @@ html(lang="en")
     link(rel="apple-touch-icon" href="")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     link(rel="stylesheet" href="static/css/bulma.css")
+    link(rel="stylesheet" href="static/css/fonts.css")
     link(rel="stylesheet" href="static/css/base.css")
     
   body
@@ -17,12 +18,12 @@ html(lang="en")
         .container
           .columns.is-variable.is-8.is-multiline.is-vcentered
             .column.is-narrow
-              #font-type.columns.is-variable.is-0-mobile
+              #font-type.columns.is-variable.is-0-mobile.is-8-tablet
             #font-properties.column.is-narrow
               form.is-flex.has-align-center
                 p.has-margin-right.is-hidden-touch Size
                 .control.is-flex.has-align-center.is-fullwidth-mobile
-                  input#range-size.input.slider.is-paddingless.is-fullwidth-mobile(type="range" min="1" value="25" max="50")
+                  input#range-size.input.slider.is-paddingless.is-fullwidth-mobile(type="range" min="0" value="25" max="50")
             .column.is-full-mobile
               .columns.is-mobile.is-vcentered.is-variable.is-0-mobile
                 #font-sets.column.is-half-mobile.is-narrow
