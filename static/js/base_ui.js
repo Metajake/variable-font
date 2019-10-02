@@ -33,7 +33,7 @@ function createElementWithAttributes(elementType, idName, classNames){
   return element;
 }
 
-function setInputEvent(inputToSet, property){
+function setVariableRangeSliderEvent(inputToSet, property){
   inputToSet.oninput = function(){
     editableText.style.setProperty('--' + property, inputToSet.value)
   }
@@ -77,6 +77,15 @@ function buildStylisticSetsForm(options){
   return form;
 }
 
+function buildVariableRangeSlider(varProp, minVal, maxVal, startVal){
+  slider = createElementWithAttributes('input', varProp, ['input','slider','is-paddingless','is-fullwidth-mobile'])
+  slider.setAttribute('type','range')
+  slider.setAttribute('min', minVal)
+  slider.setAttribute('max', maxVal)
+  slider.setAttribute('value', startVal)
+  return slider
+}
+
 function buildVariableSliderForm(variableProperty, propName, startValue, minValue, maxValue){
   formContainer = createElementWithAttributes('div','',['column','is-narrow']);
   form = createElementWithAttributes("form", '', ['is-flex','has-align-center']);
@@ -84,12 +93,8 @@ function buildVariableSliderForm(variableProperty, propName, startValue, minValu
   formLabel.innerHTML = propName;
   form.append(formLabel)
   formControl = createElementWithAttributes('div','',['control','is-flex','has-align-center','is-fullwidth-mobile'])
-  sliderInput = createElementWithAttributes('input', variableProperty, ['input','slider','is-paddingless','is-fullwidth-mobile'])
-  sliderInput.setAttribute('type','range')
-  sliderInput.setAttribute('min', minValue)
-  sliderInput.setAttribute('max', maxValue)
-  sliderInput.setAttribute('value', startValue)
-  setInputEvent(sliderInput, variableProperty)
+  sliderInput = buildVariableRangeSlider(variableProperty, minValue, maxValue, startValue)
+  setVariableRangeSliderEvent(sliderInput, variableProperty)
   formControl.append(sliderInput);
   form.append(formControl);
   formContainer.append(form);
