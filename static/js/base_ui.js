@@ -9,7 +9,7 @@ var body = document.body,
     ),
     textArea = document.querySelector("#text-area"),
     fontControls = document.querySelector(".section#font-controls"),
-    rangeSliderSize = document.querySelector('#range-size'),
+    rangeSliderSizeProperty = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
     selectedFontData = {}
@@ -149,8 +149,8 @@ function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
 }
 
 function initStaticVariableToggle(fontDataToInitFrom){
+  fontToggle.innerHTML = '';
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
-    fontToggle.innerHTML = '';
     fontToggle.append(buildStaticVariableToggle(fontDataToInitFrom));
   }
 }
@@ -166,7 +166,7 @@ function initFontSelection(fontSelection){
 }
 
 function initEvents(){
-  rangeSliderSize.oninput = function(){
+  rangeSliderSizeProperty.oninput = function(){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
 
