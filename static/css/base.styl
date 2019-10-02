@@ -59,6 +59,10 @@ form *
   font-family:"umAnimalStatic"
 
 //------------------AREAS---------------------//
+#font-controls
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 76%, rgba(255,255,255,0) 100%);
+
 #select-style
   option
     text-transform: capitalize
@@ -168,7 +172,7 @@ switchHeight = 22px
   &:before
     border-radius: 50%
 
-//--- After Controls---//
+//--- Editable Text---//
 #font-display
   margin-top:288px
 @media screen and (min-width:769px)
@@ -189,9 +193,14 @@ switchHeight = 22px
       font-variation-settings: "wght" var(--wght), "ital" var(--ital)
 
 #font-selection
+  position:fixed;
+  opacity:0.9
+  bottom: 5px
+  left: 5px
+  background:rgba(100,100,100,0.5)
+  border-radius:5px
   ul
     li
-      display:inline
       margin:5px
       cursor:pointer
 
@@ -201,7 +210,6 @@ div.is-fixed-top
   width:100%
   top:0
   z-index:1
-  background-color:white
 
 .has-margin-right
   margin-right:1rem

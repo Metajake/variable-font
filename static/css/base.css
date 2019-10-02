@@ -38,6 +38,10 @@ a.is-disabled {
 form * {
   font-family: "umAnimalStatic";
 }
+#font-controls {
+  background: #fff;
+  background: linear-gradient(180deg, #fff 76%, rgba(255,255,255,0) 100%);
+}
 #select-style option {
   text-transform: capitalize;
 }
@@ -181,8 +185,15 @@ input[type="range"].input:focus {
   --ital: 50;
   font-variation-settings: "wght" var(--wght), "ital" var(--ital);
 }
+#font-selection {
+  position: fixed;
+  opacity: 0.9;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(100,100,100,0.5);
+  border-radius: 5px;
+}
 #font-selection ul li {
-  display: inline;
   margin: 5px;
   cursor: pointer;
 }
@@ -191,7 +202,6 @@ div.is-fixed-top {
   width: 100%;
   top: 0;
   z-index: 1;
-  background-color: #fff;
 }
 .has-margin-right {
   margin-right: 1rem;

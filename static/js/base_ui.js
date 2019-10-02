@@ -15,6 +15,7 @@ var body = document.body,
     selectedFontData = {}
     fontType = document.querySelector('#font-type');
     fontSets = document.querySelector('#font-sets');
+    fontToggle = document.querySelector('#font-toggle');
 
 function capitalize(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -101,6 +102,21 @@ function buildVariableSliderForm(variableProperty, propName, startValue, minValu
   return formContainer
 }
 
+function buildStaticVariableToggle(){
+  form = createElementWithAttributes('form','',['is-flex','has-align-center','is-pulled-right'])
+  formLabel = createElementWithAttributes('p','',['has-margin-right'])
+  formLabel.innerHTML = 'Variable';
+  form.append(formLabel);
+  inputWrapper = createElementWithAttributes('label','',['switch'])
+  formInput = document.createElement('input')
+  formInput.setAttribute('type', 'checkbox')
+  inputToggle = createElementWithAttributes('span','',['toggle','round'])
+  inputWrapper.append(formInput)
+  inputWrapper.append(inputToggle)
+  form.append(inputWrapper)
+  return form;
+}
+
 function initStaticSelectionForms(fontDataToInitFrom){
   fontType.innerHTML = '';
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
@@ -122,9 +138,8 @@ function initStylisticSetsForm(fontDataToInitFrom){
 }
 
 function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
-  // fontType.innerHTML = '';
-  //If Variable Style, but No Static Styles
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
+    fontType.innerHTML = '';
     editableText.classList.add(fontSelection)
     for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
       propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
@@ -133,11 +148,20 @@ function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
   }
 }
 
+function initStaticVariableToggle(fontDataToInitFrom){
+  if(fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
+    fontToggle.innerHTML = '';
+    fontToggle.append(buildStaticVariableToggle(fontDataToInitFrom));
+  }
+}
+
 function initFontSelection(fontSelection){
   selectedFontData = setSelectedFontData(fontSelection);
   initStaticSelectionForms(selectedFontData)
   initStylisticSetsForm(selectedFontData)
   initVariablePropertiesForm(fontSelection, selectedFontData)
+  initStaticVariableToggle(selectedFontData)
+
   editableText.style.fontFamily = fontSelection
 }
 

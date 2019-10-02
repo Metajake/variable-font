@@ -67,19 +67,19 @@ var fontData = {
       styles: {
         0:{
           styleName: 'regular',
-          styleValue: 'Animal-reg',
+          styleValue: 'umAnimalStatic',
           hasSubStyles: true,
           subStyles: ['one','two']
         },
         1:{
           styleName: 'Demi Bold',
-          styleValue: 'Animal-demi',
+          styleValue: 'umAnimalStatic-demi',
           hasSubStyles: false,
           subStyles: []
         },
         2:{
           styleName: 'Black',
-          styleValue: 'Animal-black',
+          styleValue: 'umAnimalStatic-black',
           hasSubStyles: false,
           subStyles: []
         }
@@ -92,7 +92,7 @@ var fontData = {
     },
     variable: {
       hasVariable: false,
-      variableProperties:[]
+      variableProperties:{}
     }
   },
   staticVariable: {
@@ -113,8 +113,21 @@ var fontData = {
       sets: []
     },
     variable: {
-      hasVariable: false,
-      variableProperties:[]
+      hasVariable: true,
+      variableProperties:{
+        wght:{
+          name:"Weight",
+          init:500,
+          start:100,
+          end:900
+        },
+        ital:{
+          name: "Italic",
+          init: 50,
+          start:0,
+          end:100
+        }
+      }
     }
   },
 }
