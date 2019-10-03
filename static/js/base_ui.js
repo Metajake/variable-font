@@ -13,10 +13,11 @@ var body = document.body,
     rangeSliderSizeProperty = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
-    selectedFontData = {}
-    fontTypeControls = document.querySelector('#font-type-controls');
-    fontSets = document.querySelector('#font-sets');
-    fontToggle = document.querySelector('#font-toggle');
+    selectedFontData = {},
+    fontTypeControls = document.querySelector('#font-type-controls'),
+    fontSets = document.querySelector('#font-sets'),
+    fontToggle = document.querySelector('#font-toggle'),
+    staticVariableToggle = {};
 
 function capitalize(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -46,6 +47,16 @@ function setVariableRangeSliderEvent(inputToSet, property){
   inputToSet.oninput = function(){
     editableText.style.setProperty('--' + property, inputToSet.value)
   }
+}
+
+function toggleStaticVariableFontSelection(isVariable, fontName, fontData){
+
+  if(isVariable){
+    editableText.style.fontFamily = fontName + "-variable";
+  }else{
+    editableText.style.fontFamily = fontName;
+  }
+
 }
 
 function buildStaticSelectForm(options){
@@ -116,7 +127,7 @@ function buildStaticVariableToggle(){
   formLabel.innerHTML = 'Variable';
   form.append(formLabel);
   inputWrapper = createElementWithAttributes('label','',['switch'])
-  formInput = document.createElement('input')
+  formInput = createElementWithAttributes('input', 'static-variable-toggle', [])
   formInput.setAttribute('type', 'checkbox')
   inputToggle = createElementWithAttributes('span','',['toggle','round'])
   inputWrapper.append(formInput)
@@ -130,6 +141,7 @@ function initStaticSelectionForms(fontDataToInitFrom){
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
     staticSelectionForm = buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']);
     fontTypeControls.insertAdjacentElement('afterBegin', staticSelectionForm);
+    //TODO try moving this to initInteractionEvents function
     selectFontStyle = document.querySelector('#select-style');
     selectFontStyle.onchange = function(){
       editableText.style.fontFamily = this.value;
@@ -145,7 +157,7 @@ function initStylisticSetsForm(fontDataToInitFrom){
   }
 }
 
-function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
+function initVariableOnlyPropertiesForms(fontSelection, fontDataToInitFrom){
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
     removeElementsOfClassName('is-variable-range-slider');
     editableText.classList.add(fontSelection) // This sets the CSS property fontVariationSetting so that we can manipulate it with the JS range sliders
@@ -156,17 +168,15 @@ function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
   }
 }
 
-function initStaticVariableToggle(fontDataToInitFrom){
+function initStaticVariableForms(fontSelection, fontDataToInitFrom){
   fontToggle.innerHTML = '';
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
     fontToggle.append(buildStaticVariableToggle(fontDataToInitFrom));
+    staticVariableToggle = document.getElementById('static-variable-toggle');
+    staticVariableToggle.onchange = function(event){
+      toggleStaticVariableFontSelection(this.checked, fontSelection, fontDataToInitFrom);
+    };
   }
-}
-
-function updateFontSelectionCallback(fontSelection){
-  editableText.style.fontFamily = fontSelection
-
-  fontDisplay.style.marginTop = fontControls.offsetHeight + 'px';
 }
 
 function updateFontSelection(fontSelection){
@@ -174,10 +184,13 @@ function updateFontSelection(fontSelection){
 
   initStaticSelectionForms(selectedFontData)
   initStylisticSetsForm(selectedFontData)
-  initVariablePropertiesForm(fontSelection, selectedFontData)
-  initStaticVariableToggle(selectedFontData)
+  initVariableOnlyPropertiesForms(fontSelection, selectedFontData)
+  initStaticVariableForms(fontSelection, selectedFontData)
 
-  updateFontSelectionCallback(fontSelection)
+  editableText.style.fontFamily = fontSelection
+
+  fontDisplay.style.marginTop = fontControls.offsetHeight + 'px';
+
 }
 
 function initInteractionEvents(){

@@ -21,8 +21,29 @@
   src: url('../fonts/UM_Animal-Black.otf');
 }
 
+@font-face {
+	font-family: 'trispace';
+	 src: url('../fonts/ETCTrispace-Regular.woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-family: 'trispace-bold';
+	 src: url('../fonts/ETCTrispace-Bold.woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-family: 'trispace-variable';
+	 src: url('../fonts/ETCTrispaceVariable.woff2') format('woff2-variations');
+}
+
 #text-area p.arethaVariable{
   --wght:500;
   --ital:50;
+  font-variation-settings: "wght" var(--wght), "ital" var(--ital);
+}
+
+#text-area p.trispaceVariable{
+  --wght:500;
+  --wdth:125;
   font-variation-settings: "wght" var(--wght), "ital" var(--ital);
 }

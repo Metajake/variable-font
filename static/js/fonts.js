@@ -95,15 +95,21 @@ var fontData = {
       variableProperties:{}
     }
   },
-  staticVariable: {
+  trispace: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
         0:{
           styleName: 'regular',
-          styleValue: 'Animal-reg',
-          hasSubStyles: true,
-          subStyles: ['one','two']
+          styleValue: 'trispace',
+          hasSubStyles: false,
+          subStyles: []
+        },
+        1:{
+          styleName: 'Bold',
+          styleValue: 'trispace-bold',
+          hasSubStyles: false,
+          subStyles: []
         }
       }
     },
