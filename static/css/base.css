@@ -227,9 +227,6 @@ div.is-fixed-top {
   .is-fullwidth-mobile {
     width: 100%;
   }
-  .has-padding-1-top-mobile {
-    padding-top: 1.5rem !important;
-  }
   .has-padding-2-bottom-mobile {
     padding-bottom: 2rem !important;
   }
