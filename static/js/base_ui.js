@@ -14,7 +14,7 @@ var body = document.body,
     editableText = document.querySelector('#text-area p'),
     fontChoices = document.querySelectorAll('#font-selection ul li')
     selectedFontData = {}
-    fontType = document.querySelector('#font-type');
+    fontTypeControls = document.querySelector('#font-type-controls');
     fontSets = document.querySelector('#font-sets');
     fontToggle = document.querySelector('#font-toggle');
 
@@ -35,6 +35,13 @@ function createElementWithAttributes(elementType, idName, classNames){
   return element;
 }
 
+function removeElementsOfClassName(className){
+  var elements = document.getElementsByClassName(className);
+  while(elements.length > 0){
+    elements[0].parentNode.removeChild(elements[0]);
+  }
+}
+
 function setVariableRangeSliderEvent(inputToSet, property){
   inputToSet.oninput = function(){
     editableText.style.setProperty('--' + property, inputToSet.value)
@@ -42,7 +49,7 @@ function setVariableRangeSliderEvent(inputToSet, property){
 }
 
 function buildStaticSelectForm(options){
-  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
+  formContainer = createElementWithAttributes('div','',['column','is-narrow', 'is-static-selector']);
   form = document.createElement("form")
   form.append(createElementWithAttributes('div', '', ['field']))
   form.childNodes[0].append(createElementWithAttributes('div', '', ['control','is-extended']))
@@ -89,7 +96,7 @@ function buildVariableRangeSlider(varProp, minVal, maxVal, startVal){
 }
 
 function buildVariableSliderForm(variableProperty, propName, startValue, minValue, maxValue){
-  formContainer = createElementWithAttributes('div','',['column','is-narrow']);
+  formContainer = createElementWithAttributes('div','',['column','is-narrow,', 'is-variable-range-slider']);
   form = createElementWithAttributes("form", '', ['is-flex','has-align-center']);
   formLabel = createElementWithAttributes('p','', ['has-margin-right','is-hidden-touch'])
   formLabel.innerHTML = propName;
@@ -119,10 +126,10 @@ function buildStaticVariableToggle(){
 }
 
 function initStaticSelectionForms(fontDataToInitFrom){
-  fontType.innerHTML = '';
+  removeElementsOfClassName('is-static-selector')
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
     staticSelectionForm = buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']);
-    fontType.append(staticSelectionForm);
+    fontTypeControls.insertAdjacentElement('afterBegin', staticSelectionForm);
     selectFontStyle = document.querySelector('#select-style');
     selectFontStyle.onchange = function(){
       editableText.style.fontFamily = this.value;
@@ -140,14 +147,11 @@ function initStylisticSetsForm(fontDataToInitFrom){
 
 function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
-    fontType.innerHTML = '';
-    editableText.classList.add(fontSelection)
-    for (i = 0; i < Object.keys(fontDataToInitFrom['variable']['variableProperties']).length; i ++){
-      console.log(i)
-    }
+    removeElementsOfClassName('is-variable-range-slider');
+    editableText.classList.add(fontSelection) // This sets the CSS property fontVariationSetting so that we can manipulate it with the JS range sliders
     for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
       propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
-      fontType.append( buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
+      fontTypeControls.insertAdjacentElement('afterBegin', buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
     }
   }
 }
@@ -161,7 +165,7 @@ function initStaticVariableToggle(fontDataToInitFrom){
 
 function updateFontSelectionCallback(fontSelection){
   editableText.style.fontFamily = fontSelection
-  
+
   fontDisplay.style.marginTop = fontControls.offsetHeight + 'px';
 }
 
@@ -176,7 +180,7 @@ function updateFontSelection(fontSelection){
   updateFontSelectionCallback(fontSelection)
 }
 
-function initPageEvents(){
+function initInteractionEvents(){
   rangeSliderSizeProperty.oninput = function(){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
@@ -201,5 +205,5 @@ window.addEventListener("load", function(e){
 
   updateFontSelection(fontChoices[0].innerHTML.trim())
 
-  initPageEvents()
+  initInteractionEvents()
 })

@@ -81,6 +81,10 @@ select::-ms-expand
     font-size:1.4em
 
 //--- Property Range Sliders ----//
+@media only screen and (max-width:768px)
+  .is-variable-range-slider
+    margin-bottom:1rem
+
 input[type="range"]
   height:1px
   &.input
@@ -119,7 +123,7 @@ input[type="range"]
       width:20px
       height:20px
 
-//-----VariableToggle----//
+//----- Static-Variable Toggle ----//
 switchHeight = 22px
 .switch
   position: relative
@@ -180,10 +184,6 @@ switchHeight = 22px
     vertical-align: top
     &:focus
       outline:none !important
-    &.arethaVariable
-      --wght:500
-      --ital:50
-      font-variation-settings: "wght" var(--wght), "ital" var(--ital)
 
 #font-selection
   position:fixed;

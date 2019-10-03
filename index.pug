@@ -16,9 +16,7 @@ html(lang="en")
     div.is-fixed-top
       .section#font-controls.has-padding-1-top-mobile.has-padding-2-bottom-mobile
         .container
-          .columns.is-variable.is-8.is-multiline.is-vcentered
-            .column.is-narrow
-              #font-type.columns.is-variable.is-0-mobile.is-8-tablet
+          #font-type-controls.columns.is-variable.is-8.is-multiline.is-vcentered
             #font-properties.column.is-narrow
               form.is-flex.has-align-center
                 p.has-margin-right.is-hidden-touch Size
@@ -31,7 +29,7 @@ html(lang="en")
     #font-display.section.is-paddingless-top.is-paddingless-bottom
       .container
         .columns
-          .column.is-paddingless-bottom
+          .column.is-paddingless-top.is-paddingless-bottom
             #text-area
               p.is-inline-block(contenteditable) ARETHA
     #font-selection

@@ -20,3 +20,9 @@
   font-family: 'umAnimalStatic-black';
   src: url('../fonts/UM_Animal-Black.otf');
 }
+
+#text-area p.arethaVariable{
+  --wght:500;
+  --ital:50;
+  font-variation-settings: "wght" var(--wght), "ital" var(--ital);
+}

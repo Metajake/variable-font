@@ -67,6 +67,11 @@ select::-ms-expand {
     font-size: 1.4em;
   }
 }
+@media only screen and (max-width: 768px) {
+  .is-variable-range-slider {
+    margin-bottom: 1rem;
+  }
+}
 input[type="range"] {
   height: 1px;
 }
@@ -181,11 +186,6 @@ input[type="range"].input:focus {
 }
 #text-area p:focus {
   outline: none !important;
-}
-#text-area p.arethaVariable {
-  --wght: 500;
-  --ital: 50;
-  font-variation-settings: "wght" var(--wght), "ital" var(--ital);
 }
 #font-selection {
   position: fixed;
