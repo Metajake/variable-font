@@ -8,7 +8,7 @@ var body = document.body,
       html.offsetHeight
     ),
     textArea = document.querySelector("#text-area"),
-    fontControls = document.querySelector(".section#font-controls"),
+    fontControls = document.getElementById("font-controls"),
     fontDisplay = document.querySelector(".section#font-display"),
     rangeSliderSizeProperty = document.querySelector('#range-size'),
     editableText = document.querySelector('#text-area p'),
@@ -142,6 +142,9 @@ function initVariablePropertiesForm(fontSelection, fontDataToInitFrom){
   if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
     fontType.innerHTML = '';
     editableText.classList.add(fontSelection)
+    for (i = 0; i < Object.keys(fontDataToInitFrom['variable']['variableProperties']).length; i ++){
+      console.log(i)
+    }
     for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
       propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
       fontType.append( buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
@@ -156,17 +159,24 @@ function initStaticVariableToggle(fontDataToInitFrom){
   }
 }
 
-function initFontSelection(fontSelection){
+function updateFontSelectionCallback(fontSelection){
+  editableText.style.fontFamily = fontSelection
+  
+  fontDisplay.style.marginTop = fontControls.offsetHeight + 'px';
+}
+
+function updateFontSelection(fontSelection){
   selectedFontData = setSelectedFontData(fontSelection);
+
   initStaticSelectionForms(selectedFontData)
   initStylisticSetsForm(selectedFontData)
   initVariablePropertiesForm(fontSelection, selectedFontData)
   initStaticVariableToggle(selectedFontData)
 
-  editableText.style.fontFamily = fontSelection
+  updateFontSelectionCallback(fontSelection)
 }
 
-function initEvents(){
+function initPageEvents(){
   rangeSliderSizeProperty.oninput = function(){
     editableText.style.fontSize = (this.value * 0.1) +"rem";
   }
@@ -179,17 +189,17 @@ function initEvents(){
 
   fontChoices.forEach(function(choice){
     choice.addEventListener('click',function(event){
-      initFontSelection(event.target.innerHTML.trim())
+      updateFontSelection(event.target.innerHTML.trim())
     })
   })
 }
 
 window.addEventListener("load", function(e){
   textArea.style.height = (docHeight-fontControls.offsetHeight)+'px';
-  fontDisplay.style.marginTop = fontControls.offsetHeight + 20 + 'px';
+  fontDisplay.style.marginTop = fontControls.offsetHeight + 40 + 'px';
   editableText.focus();
 
-  initFontSelection(fontChoices[0].innerHTML.trim())
+  updateFontSelection(fontChoices[0].innerHTML.trim())
 
-  initEvents()
+  initPageEvents()
 })
