@@ -52,9 +52,11 @@ function setVariableRangeSliderEvent(inputToSet, property){
 function toggleStaticVariableFontSelection(isVariable, fontName, fontData){
 
   if(isVariable){
-    editableText.style.fontFamily = fontName + "-variable";
+    editableText.style.fontFamily = fontData['variable']['variableName'];
+    initVariableOnlyPropertiesForms(fontName, fontData);
   }else{
-    editableText.style.fontFamily = fontName;
+    editableText.style.fontFamily = fontData['staticStyles']['styles'][0]['styleValue'];
+    initStaticSelectionForms(fontData)
   }
 
 }
@@ -137,7 +139,8 @@ function buildStaticVariableToggle(){
 }
 
 function initStaticSelectionForms(fontDataToInitFrom){
-  removeElementsOfClassName('is-static-selector')
+  removeElementsOfClassName('is-static-selector');
+  removeElementsOfClassName('is-variable-range-slider');
   if(fontDataToInitFrom['staticStyles']['hasStaticStyles']){
     staticSelectionForm = buildStaticSelectForm(fontDataToInitFrom['staticStyles']['styles']);
     fontTypeControls.insertAdjacentElement('afterBegin', staticSelectionForm);
@@ -158,36 +161,40 @@ function initStylisticSetsForm(fontDataToInitFrom){
 }
 
 function initVariableOnlyPropertiesForms(fontSelection, fontDataToInitFrom){
-  if(!fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
-    removeElementsOfClassName('is-variable-range-slider');
-    editableText.classList.add(fontSelection) // This sets the CSS property fontVariationSetting so that we can manipulate it with the JS range sliders
-    for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
-      propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
-      fontTypeControls.insertAdjacentElement('afterBegin', buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
-    }
+  removeElementsOfClassName('is-static-selector')
+  removeElementsOfClassName('is-variable-range-slider');
+  editableText.classList.add(fontSelection) // This sets the CSS property fontVariationSetting so that we can manipulate it with the JS range sliders
+  for ( property in fontDataToInitFrom['variable']['variableProperties'] ){
+    propertyData = fontDataToInitFrom['variable']['variableProperties'][property]
+    fontTypeControls.insertAdjacentElement('afterBegin', buildVariableSliderForm(property, propertyData['name'], propertyData['init'], propertyData['start'], propertyData['end']) );
   }
 }
 
 function initStaticVariableForms(fontSelection, fontDataToInitFrom){
   fontToggle.innerHTML = '';
-  if(fontDataToInitFrom['staticStyles']['hasStaticStyles'] && fontDataToInitFrom['variable']['hasVariable']){
-    fontToggle.append(buildStaticVariableToggle(fontDataToInitFrom));
-    staticVariableToggle = document.getElementById('static-variable-toggle');
-    staticVariableToggle.onchange = function(event){
-      toggleStaticVariableFontSelection(this.checked, fontSelection, fontDataToInitFrom);
-    };
-  }
+  editableText.classList.add(fontDataToInitFrom['variable']['variableName']) // This sets the CSS property fontVariationSetting so that we can manipulate it with the JS range sliders
+  fontToggle.append(buildStaticVariableToggle(fontDataToInitFrom));
+  staticVariableToggle = document.getElementById('static-variable-toggle');
+  staticVariableToggle.onchange = function(event){
+    toggleStaticVariableFontSelection(this.checked, fontSelection, fontDataToInitFrom);
+  };
 }
 
 function updateFontSelection(fontSelection){
   selectedFontData = setSelectedFontData(fontSelection);
 
-  initStaticSelectionForms(selectedFontData)
+  if(selectedFontData['staticStyles']['hasStaticStyles'] && !selectedFontData['variable']['hasVariable']){
+    initStaticSelectionForms(selectedFontData)
+    editableText.style.fontFamily = selectedFontData['staticStyles']['styles'][0]['styleValue']
+  }else if (!selectedFontData['staticStyles']['hasStaticStyles'] && selectedFontData['variable']['hasVariable']){
+    initVariableOnlyPropertiesForms(fontSelection, selectedFontData)
+    editableText.style.fontFamily = selectedFontData['variable']['variableName']
+  }else if (selectedFontData['staticStyles']['hasStaticStyles'] && selectedFontData['variable']['hasVariable']){
+    initStaticSelectionForms(selectedFontData)
+    initStaticVariableForms(fontSelection, selectedFontData)
+    editableText.style.fontFamily = selectedFontData['staticStyles']['styles'][0]['styleValue']
+  }
   initStylisticSetsForm(selectedFontData)
-  initVariableOnlyPropertiesForms(fontSelection, selectedFontData)
-  initStaticVariableForms(fontSelection, selectedFontData)
-
-  editableText.style.fontFamily = fontSelection
 
   fontDisplay.style.marginTop = fontControls.offsetHeight + 'px';
 

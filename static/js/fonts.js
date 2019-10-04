@@ -45,6 +45,7 @@ var fontData = {
     },
     variable: {
       hasVariable: true,
+      variableName: 'arethaVariable',
       variableProperties:{
         ital:{
           name: "Italic",
@@ -95,7 +96,7 @@ var fontData = {
       variableProperties:{}
     }
   },
-  trispace: {
+  trispaceVariable: {
     staticStyles: {
       hasStaticStyles: true,
       styles: {
@@ -120,6 +121,7 @@ var fontData = {
     },
     variable: {
       hasVariable: true,
+      variableName: 'trispace-variable',
       variableProperties:{
         wght:{
           name:"Weight",
@@ -127,11 +129,11 @@ var fontData = {
           start:100,
           end:900
         },
-        ital:{
-          name: "Italic",
-          init: 50,
-          start:0,
-          end:100
+        wdth:{
+          name: "Width",
+          init: 125,
+          start:50,
+          end:200
         }
       }
     }
