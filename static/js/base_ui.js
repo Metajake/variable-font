@@ -62,7 +62,7 @@ function toggleStaticVariableFontSelection(isVariable, fontName, fontData){
 }
 
 function buildStaticSelectForm(options){
-  formContainer = createElementWithAttributes('div','',['column','is-narrow', 'is-static-selector']);
+  formContainer = createElementWithAttributes('div','',['column','is-narrow', 'is-static-selector', 'has-transition-opacity']);
   form = document.createElement("form")
   form.append(createElementWithAttributes('div', '', ['field']))
   form.childNodes[0].append(createElementWithAttributes('div', '', ['control','is-extended']))
@@ -181,6 +181,15 @@ function initStaticVariableForms(fontSelection, fontDataToInitFrom){
 }
 
 function updateFontSelection(fontSelection){
+  elementsToUpdate = document.querySelectorAll('.has-transition-opacity')
+
+  elementsToUpdate.forEach(function(element){
+    element.addEventListener('transitionend', function(){
+      console.log(element)
+    })
+    element.classList.add('fade-out');
+  });
+
   selectedFontData = setSelectedFontData(fontSelection);
 
   if(selectedFontData['staticStyles']['hasStaticStyles'] && !selectedFontData['variable']['hasVariable']){
